@@ -1,5 +1,11 @@
-/**
- * Created by Anthony on 9/21/2015.
- */
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
 public class FlyTest {
+    @Test
+    public void testFlyIsFly(){
+        Fly fly = new Fly("Big");
+        String name = fly.toString();
+        assertEquals("Big Fly", name);
+    }
 }
