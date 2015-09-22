@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TestCreature</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">main</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TestCreature (main)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TestCreature</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package main;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * Created by Anthony on 9/21/2015.
+<i>5</i>&nbsp; */
+<b class="nc"><i>6</i>&nbsp;public class TestCreature {</b>
+<b class="nc"><i>7</i>&nbsp;    static int THING_COUNT = 10;</b>
+<b class="nc"><i>8</i>&nbsp;    static int CREATURE_COUNT = 4;</b>
+<i>9</i>&nbsp;    public static void main(String[] args){
+<b class="nc"><i>10</i>&nbsp;        Thing[] arrayOfThings = new Thing[THING_COUNT];</b>
+<b class="nc"><i>11</i>&nbsp;        Creature[] arrayOfCreatures = new Creature[CREATURE_COUNT];</b>
+<b class="nc"><i>12</i>&nbsp;        arrayOfThings[0] = new Thing(&quot;Dr. Suess&quot;);</b>
+<b class="nc"><i>13</i>&nbsp;        arrayOfThings[1] = new Thing(&quot;main.Thing 1&quot;);</b>
+<b class="nc"><i>14</i>&nbsp;        arrayOfThings[2] = new Thing(&quot;main.Thing 2&quot;);</b>
+<b class="nc"><i>15</i>&nbsp;        arrayOfThings[3] = new Thing(&quot;Blue Fish&quot;);</b>
+<b class="nc"><i>16</i>&nbsp;        arrayOfThings[4] = new Thing(&quot;Red Fish&quot;);</b>
+<b class="nc"><i>17</i>&nbsp;        arrayOfThings[5] = new Tiger(&quot;Tony&quot;);</b>
+<b class="nc"><i>18</i>&nbsp;        arrayOfThings[6] = new Tiger(&quot;Mufasta&quot;);</b>
+<b class="nc"><i>19</i>&nbsp;        arrayOfThings[7] = new Tiger(&quot;Simba&quot;);</b>
+<b class="nc"><i>20</i>&nbsp;        arrayOfThings[8] = new Tiger(&quot;Kimbo&quot;);</b>
+<b class="nc"><i>21</i>&nbsp;        arrayOfThings[9] = new Tiger(&quot;Roar&quot;);</b>
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;        arrayOfCreatures[0] = new Tiger(&quot;Tigerman&quot;);</b>
+<b class="nc"><i>24</i>&nbsp;        arrayOfCreatures[1] = new Ant(&quot;Antman&quot;);</b>
+<b class="nc"><i>25</i>&nbsp;        arrayOfCreatures[2] = new Bat(&quot;Batman&quot;);</b>
+<b class="nc"><i>26</i>&nbsp;        arrayOfCreatures[3] = new Fly(&quot;Flyman&quot;);</b>
+<b class="nc"><i>27</i>&nbsp;        System.out.println(&quot;Things: \n&quot;);</b>
+<b class="nc"><i>28</i>&nbsp;        for(int i = 0; i &lt; arrayOfThings.length; i++){</b>
+<b class="nc"><i>29</i>&nbsp;            System.out.println(arrayOfThings[i]);</b>
+<i>30</i>&nbsp;        }
+<b class="nc"><i>31</i>&nbsp;        System.out.println(&quot;\nCreatures: \n&quot;);</b>
+<b class="nc"><i>32</i>&nbsp;        for(int i = 0; i &lt; arrayOfCreatures.length; i++){</b>
+<b class="nc"><i>33</i>&nbsp;            System.out.println(arrayOfCreatures[i]);</b>
+<b class="nc"><i>34</i>&nbsp;            arrayOfCreatures[i].move();</b>
+<b class="nc"><i>35</i>&nbsp;            System.out.println();</b>
+<i>36</i>&nbsp;        }
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2015-09-22 10:19</div>
+</div>
+</body>
+</html>
