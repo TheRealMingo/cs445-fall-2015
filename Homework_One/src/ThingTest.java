@@ -1,5 +1,12 @@
-/**
- * Created by Anthony on 9/21/2015.
- */
+import  static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
 public class ThingTest {
+    @Test
+    public void testThingHasName(){
+        Thing thing = new Thing("Name");
+        String name = thing.toString();
+        assertEquals("Name", name);
+    }
+
 }
