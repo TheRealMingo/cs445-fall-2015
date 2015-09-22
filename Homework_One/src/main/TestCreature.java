@@ -10,8 +10,8 @@ public class TestCreature {
         Thing[] arrayOfThings = new Thing[THING_COUNT];
         Creature[] arrayOfCreatures = new Creature[CREATURE_COUNT];
         arrayOfThings[0] = new Thing("Dr. Suess");
-        arrayOfThings[1] = new Thing("main.Thing 1");
-        arrayOfThings[2] = new Thing("main.Thing 2");
+        arrayOfThings[1] = new Thing("Thing 1");
+        arrayOfThings[2] = new Thing("Thing 2");
         arrayOfThings[3] = new Thing("Blue Fish");
         arrayOfThings[4] = new Thing("Red Fish");
         arrayOfThings[5] = new Tiger("Tony");
@@ -32,6 +32,8 @@ public class TestCreature {
         for(int i = 0; i < arrayOfCreatures.length; i++){
             System.out.println(arrayOfCreatures[i]);
             arrayOfCreatures[i].move();
+            arrayOfCreatures[i].eat(arrayOfThings[i]);
+            arrayOfCreatures[i].whatDidYouEat();
             System.out.println();
         }
     }
