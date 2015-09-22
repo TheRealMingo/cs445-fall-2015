@@ -1,3 +1,5 @@
+package main;
+
 /**
  * Created by Anthony on 9/21/2015.
  */
@@ -8,8 +10,8 @@ public class TestCreature {
         Thing[] arrayOfThings = new Thing[THING_COUNT];
         Creature[] arrayOfCreatures = new Creature[CREATURE_COUNT];
         arrayOfThings[0] = new Thing("Dr. Suess");
-        arrayOfThings[1] = new Thing("Thing 1");
-        arrayOfThings[2] = new Thing("Thing 2");
+        arrayOfThings[1] = new Thing("main.Thing 1");
+        arrayOfThings[2] = new Thing("main.Thing 2");
         arrayOfThings[3] = new Thing("Blue Fish");
         arrayOfThings[4] = new Thing("Red Fish");
         arrayOfThings[5] = new Tiger("Tony");

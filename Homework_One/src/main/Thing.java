@@ -1,3 +1,5 @@
+package main;
+
 /**
  * Created by Anthony on 9/21/2015.
  */
@@ -9,7 +11,7 @@ public class Thing {
     }
 
     public String toString(){
-       if(getClass().getSimpleName() == "Thing") {
+       if(getClass().getSimpleName() == "main.Thing") {
            return name;
        }
         return name + " " + getClass().getSimpleName();

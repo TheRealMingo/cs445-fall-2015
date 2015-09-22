@@ -1,3 +1,5 @@
+package main;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -6,6 +8,6 @@ public class FlyTest {
     public void testFlyIsFly(){
         Fly fly = new Fly("Big");
         String name = fly.toString();
-        assertEquals("Big Fly", name);
+        assertEquals("Big main.Fly", name);
     }
 }

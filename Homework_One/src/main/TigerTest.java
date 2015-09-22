@@ -1,3 +1,5 @@
+package main;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -6,6 +8,6 @@ public class TigerTest {
     public void testTigerIsATiger(){
         Tiger tiger = new Tiger("Matt");
         String name = tiger.toString();
-        assertEquals("Matt Tiger", name);
+        assertEquals("Matt main.Tiger", name);
     }
 }

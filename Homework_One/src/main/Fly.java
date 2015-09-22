@@ -1,3 +1,5 @@
+package main;
+
 /**
  * Created by Anthony on 9/21/2015.
  */
@@ -7,7 +9,7 @@ public class Fly extends Creature {
     }
 
     public void eat(Thing aThing){
-        if(!aThing.getClass().getSimpleName().equals("Thing")) {
+        if(!aThing.getClass().getSimpleName().equals("main.Thing")) {
             System.out.println(toString() + " won't eat a "  + aThing.toString());
         }
         else{

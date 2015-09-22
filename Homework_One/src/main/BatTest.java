@@ -1,3 +1,5 @@
+package main;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -6,6 +8,6 @@ public class BatTest {
     public void testBatIsBat(){
         Bat bat = new Bat("Huge");
         String name = bat.toString();
-        assertEquals("Huge Bat", name);
+        assertEquals("Huge main.Bat", name);
     }
 }

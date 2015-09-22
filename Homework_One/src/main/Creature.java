@@ -1,3 +1,5 @@
+package main;
+
 public abstract class Creature extends Thing{
     private Thing eatenThing;
     public Creature(String name){

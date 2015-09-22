@@ -1,3 +1,5 @@
+package main;
+
 /**
  * Created by Anthony on 9/21/2015.
  */
@@ -7,11 +9,11 @@ public class Bat extends Creature implements Flyer{
     }
 
     public void eat(Thing aThing){
-        if(!aThing.getClass().getSimpleName().equals("Creature")){
-            if(!aThing.getClass().getSimpleName().equals("Thing")){
+        if(!aThing.getClass().getSimpleName().equals("main.Creature")){
+            if(!aThing.getClass().getSimpleName().equals("main.Thing")){
 
             }
-            else if(aThing.getClass().getSimpleName().equals("Thing")){
+            else if(aThing.getClass().getSimpleName().equals("main.Thing")){
                 System.out.println(toString() + " won't eat a " +aThing.toString());
             }
         }
