@@ -8,6 +8,6 @@ public class TigerTest {
     public void testTigerIsATiger(){
         Tiger tiger = new Tiger("Matt");
         String name = tiger.toString();
-        assertEquals("Matt main.Tiger", name);
+        assertEquals("Matt Tiger", name);
     }
 }

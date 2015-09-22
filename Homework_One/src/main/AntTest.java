@@ -8,6 +8,6 @@ public class AntTest  {
     public void testAntIsAnt(){
         Ant ant = new Ant("Hero");
         String name = ant.toString();
-        assertEquals("Hero main.Ant", name);
+        assertEquals("Hero Ant", name);
     }
 }

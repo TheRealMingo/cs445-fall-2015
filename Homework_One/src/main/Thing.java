@@ -11,7 +11,7 @@ public class Thing {
     }
 
     public String toString(){
-       if(getClass().getSimpleName() == "main.Thing") {
+       if(getClass().getSimpleName().equals("Thing")) {
            return name;
        }
         return name + " " + getClass().getSimpleName();

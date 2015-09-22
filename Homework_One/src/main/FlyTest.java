@@ -8,6 +8,6 @@ public class FlyTest {
     public void testFlyIsFly(){
         Fly fly = new Fly("Big");
         String name = fly.toString();
-        assertEquals("Big main.Fly", name);
+        assertEquals("Big Fly", name);
     }
 }

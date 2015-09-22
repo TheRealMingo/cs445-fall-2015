@@ -8,6 +8,6 @@ public class BatTest {
     public void testBatIsBat(){
         Bat bat = new Bat("Huge");
         String name = bat.toString();
-        assertEquals("Huge main.Bat", name);
+        assertEquals("Huge Bat", name);
     }
 }
