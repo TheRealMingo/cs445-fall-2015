@@ -2,7 +2,7 @@ import org.junit.Test;
 import exceptions.CategoryMustHaveGenreException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertArrayEquals;
 
 public class CategoryTests {
     @Test(expected = CategoryMustHaveGenreException.class)
@@ -27,12 +27,23 @@ public class CategoryTests {
     }
 
     @Test
-    public void testCategoryCanHaveSubCategory(){
+    public void testCategoryCanHaveASubCategory(){
         Category c = new Category("Comedy");
         c.giveSubcategory("Kids");
-        String subcategory = c.obtainSubcategory();
-        assertEquals("Category can have subcategory", "Kids", subcategory);
+        String[] subcategory = c.obtainSubcategoriesNames();
+        assertEquals("Subcategory length for one subcategory should be 1", 1, subcategory.length);
+        assertEquals("Category can have subcategory", "Kids", subcategory[0]);
     }
 
+    @Test
+    public void testCategoryCanHaveMultipleSubCategories(){
+        Category c = new Category("Comedy");
+        c.giveSubcategory("Adult");
+        c.giveSubcategory("Kids");
+        c.giveSubcategory("Historical");
+        String[] subcategories = c.obtainSubcategoriesNames();
+        String[] expected = {"Adult", "Kids", "Historical"};
+        assertArrayEquals("Category can have multiple subcategories", expected, subcategories);
+    }
 
 }

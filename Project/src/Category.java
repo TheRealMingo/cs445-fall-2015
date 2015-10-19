@@ -1,11 +1,13 @@
 import exceptions.CategoryMustHaveGenreException;
 
+import java.util.ArrayList;
+
 /**
  * Created by Anthony on 10/9/2015.
  */
 public class Category {
-    String categoryGenre;
-    Subcategory subcat; /*Change to array of subcategories because category should be able to have multiple subcategories*/
+    private String categoryGenre;
+    private ArrayList<Subcategory> subcat = new ArrayList<Subcategory>(); /*Change to array of subcategories because category should be able to have multiple subcategories*/
 
     public Category() throws CategoryMustHaveGenreException {
         throw new CategoryMustHaveGenreException();
@@ -17,7 +19,7 @@ public class Category {
 
     public Category(String genre, String subcategory){
         categoryGenre = genre;
-        subcat = new Subcategory(subcategory);
+        subcat.add(new Subcategory(this, subcategory));
     }
 
     public String obtainGenre(){
@@ -29,11 +31,15 @@ public class Category {
     }
 
     public void giveSubcategory(String subcategory){
-        subcat = new Subcategory(subcategory);
+        subcat.add(new Subcategory(this, subcategory));
     }
 
-    public String obtainSubcategory(){
-        String subcategory = subcat.obtainGenre();
-        return subcategory;
+    public String[] obtainSubcategoriesNames(){
+        int amountOfSubCategories = subcat.size();
+        String[] subcategories = new String[amountOfSubCategories];
+        for(int i = 0; i < amountOfSubCategories; i++) {
+           subcategories[i] = subcat.get(i).obtainGenre();
+        }
+        return subcategories;
     }
 }

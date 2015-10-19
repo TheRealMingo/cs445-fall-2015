@@ -1,17 +1,28 @@
+import exceptions.CategoryMustHaveGenreException;
 import exceptions.SubCategoryMustHaveGenreException;
 
-public class Subcategory {
-    public String subcategoryGenre;
-  /*Subcategory can have a subcategory*/
-    public Subcategory() throws SubCategoryMustHaveGenreException {
-        throw new SubCategoryMustHaveGenreException();
+public class Subcategory extends Category {
+    private Category parentCategory;
+    private Category rootCategory;
+
+    public Subcategory() throws CategoryMustHaveGenreException {
+        throw new CategoryMustHaveGenreException();
     }
 
-    public Subcategory(String genre){
-        subcategoryGenre = genre;
+    public Subcategory(Category parent, String genre){
+        super(genre);
+        parentCategory = parent;
+        if(parent.getClass().getSimpleName().equals("Subcategory"))
+            rootCategory = ((Subcategory)parent).obtainRootParentCategory();
+        else
+            rootCategory = parent;
     }
 
-    public String obtainGenre(){
-        return subcategoryGenre;
+    public Category obtainParentCategory(){
+        return parentCategory;
+    }
+
+    public Category obtainRootParentCategory(){
+        return rootCategory;
     }
 }
