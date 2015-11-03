@@ -1,6 +1,8 @@
 import exceptions.CategoryMustHaveGenreException;
 import exceptions.SubCategoryMustHaveGenreException;
 
+import java.util.ArrayList;
+
 public class Subcategory extends Category {
     private Category parentCategory;
     private Category rootCategory;

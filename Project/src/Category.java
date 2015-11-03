@@ -42,4 +42,22 @@ public class Category {
         }
         return subcategories;
     }
+
+    /*Might change so order doesn't matter*/
+    public boolean equalsTo(Category c){
+        if(this.obtainGenre().equals(c.obtainGenre())){
+            if(this.obtainSubcategoriesNames().length != c.obtainSubcategoriesNames().length){
+                return false;
+            }
+            else {
+                for (int i = 0; i < this.obtainSubcategoriesNames().length; i++) {
+                    if (this.obtainSubcategoriesNames()[i] != c.obtainSubcategoriesNames()[i]){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 }

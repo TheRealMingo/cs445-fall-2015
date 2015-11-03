@@ -1,8 +1,7 @@
 import exceptions.CategoryMustHaveGenreException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
 public class SubcategoryTests {
     @Test(expected= CategoryMustHaveGenreException.class)
@@ -81,6 +80,37 @@ public class SubcategoryTests {
         String rootParentName = sc1RootParent.obtainGenre();
         assertEquals("Subcategory's root parent memory location is correct", c, sc1RootParent);
         assertEquals("Subcategory's root parent name is corret", "History", rootParentName);
+    }
+
+    @Test
+    public void testSubcategoryCanHaveSubCategories(){
+        Category c = new Category("History");
+        Subcategory sc = new Subcategory(c, "Modern");
+        sc.giveSubcategory("USA");
+        sc.giveSubcategory("China");
+        String[] subcats = sc.obtainSubcategoriesNames();
+        String[] expected = {"USA", "China"};
+        assertArrayEquals("Subcategory can have subcategory", expected, subcats);
+    }
+
+    @Test
+    public void testSubcategoriesAreEqual(){
+        Category c = new Category("History");
+        Subcategory sc = new Subcategory(c, "Modern");
+        sc.giveSubcategory("USA");
+        Subcategory sc1 = new Subcategory(c, "Modern");
+        sc1.giveSubcategory("USA");
+        assertTrue("Subcategories should be equal", sc.equalsTo(sc1));
+    }
+
+    @Test
+    public void testSubcategoriesAreNotEqual(){
+        Category c = new Category("History");
+        Subcategory sc = new Subcategory(c, "Modern");
+        sc.giveSubcategory("USA");
+        Subcategory sc1 = new Subcategory(c, "Modern");
+        sc1.giveSubcategory("China");
+        assertFalse("Subcategories should not be equal", sc.equalsTo(sc1));
     }
 }
 

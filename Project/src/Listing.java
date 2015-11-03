@@ -9,6 +9,18 @@ public class Listing {
     private String endDate;
     private double price;
 
+    public Listing(){
+
+    }
+
+    public Listing(String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
+        this.businessDescr = businessDescr;
+        this.imageLoc = imageLoc;
+        this.websiteLink = websiteLink;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.price = price;
+    }
     public void updateBusinessDescription(String description){
         businessDescr =  description;
     }
