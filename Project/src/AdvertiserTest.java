@@ -1,5 +1,11 @@
 import org.junit.Test;
+
+import java.util.GregorianCalendar;
+
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by Anthony on 11/3/2015.
  */
@@ -55,4 +61,109 @@ public class AdvertiserTest {
         String phoneNumber = adv.obtainPhoneNumber();
         assertEquals("Advertiser has a phone number", "(123)456-7890", phoneNumber);
     }
+
+    @Test
+    public void testAdvertiserCanHaveASocialMediaAccount(){
+        Advertiser adv = new Advertiser();
+        adv.addSocialMedia("Facebook", "www.facebook.com/profile=king%20james");
+        String socialMedia = adv.obtainAllSocialMedia()[0];
+        assertEquals("Advertiser have a social media account", "Facebook:www.facebook.com/profile=king%20james", socialMedia);
+    }
+
+    @Test
+    public void testAdvertiserCanHaveMultipleMediaAccounts(){
+        Advertiser adv = new Advertiser();
+        adv.addSocialMedia("Facebook", "www.facebook.com/profile=king%20james");
+        adv.addSocialMedia("LinkedIn", "www.linkedin.com/profile=king%20james");
+        adv.addSocialMedia("Twitter", "www.twitter.com/profile=king%20james");
+        String[] expected = {"Facebook:www.facebook.com/profile=king%20james", "LinkedIn:www.linkedin.com/profile=king%20james", "Twitter:www.twitter.com/profile=king%20james"};
+        assertArrayEquals("Advertiser can have multiple social media accounts", expected, adv.obtainAllSocialMedia());
+    }
+
+    /*CREATE A TEST FOR IF A SOCIAL MEDIA DOESN'T EXIST*/
+    @Test
+    public void testAdvertiserCanUpdateASocialMediaAccount(){
+        Advertiser adv = new Advertiser();
+        adv.addSocialMedia("Facebook", "www.facebook.com/profile=king%20james");
+        adv.addSocialMedia("LinkedIn", "www.linkedin.com/profile=king%20james");
+        adv.addSocialMedia("Twitter", "www.twitter.com/profile=king%20james");
+        adv.updateSocialMedia("Facebook", "www.facebook.com/profile=king%20james%20V");
+        String[] expected = {"Facebook:www.facebook.com/profile=king%20james%20V", "LinkedIn:www.linkedin.com/profile=king%20james", "Twitter:www.twitter.com/profile=king%20james"};
+        assertArrayEquals("Advertiser\'s Social Media Information can be updated", expected, adv.obtainAllSocialMedia());
+    }
+
+    @Test
+    public void testAdvertiserHasAStartDate(){
+        Advertiser adv = new Advertiser();
+        adv.updateStartDate("Jan 02, 2001");
+        String startDate = adv.obtainStartDate();
+        assertEquals("Advertiser\'s have start date (with String)", "Jan 02, 2001", startDate);
+    }
+
+    @Test
+    public void testAdvertiserHasAStartDate2(){
+        Advertiser adv = new Advertiser();
+        adv.updateStartDate(new GregorianCalendar(2001, 0, 2));
+        String startDate = adv.obtainStartDate();
+        assertEquals("Advertiser\'s have start date (with Gregorian Calender)", "Jan 02, 2001", startDate);
+    }
+
+    @Test
+    public void testAdvertiserHasAStartDate3(){
+        Advertiser adv = new Advertiser();
+        adv.updateStartDate(2001, 1, 2);
+        String startDate = adv.obtainStartDate();
+        assertEquals("Advertiser\'s have start date (with 3 integers)", "Jan 02, 2001", startDate);
+    }
+
+    @Test
+    public void testAdvertiserHasAListing(){
+        Advertiser adv = new Advertiser();
+        Listing listing = new Listing();
+        listing.updateBusinessDescription("This is one of my listing");
+        adv.giveListing(listing);
+        Listing theListing = adv.obtainListings()[0];
+
+        Listing expected = new Listing();
+        expected.updateBusinessDescription("This is one of my listing");
+
+        boolean listingBool = expected.equalTo(theListing);
+        assertTrue("Advertiser\'s have a list", listingBool);
+    }
+
+    @Test
+    public void testAdvertiserHaveManyListing(){
+        Advertiser adv = new Advertiser();
+
+        Listing listing = new Listing();
+        listing.updateBusinessDescription("This is Listing 0");
+
+        Listing listing1 = new Listing();
+        listing1.updateBusinessDescription("This is Listing 1");
+
+        Listing listing2 = new Listing();
+        listing2.updateBusinessDescription("This is Listing 2");
+
+        adv.giveListing(listing);
+        adv.giveListing(listing1);
+        adv.giveListing(listing2);
+
+        Listing expected = new Listing();
+        expected.updateBusinessDescription("This is Listing 0");
+
+        Listing expected1 = new Listing();
+        expected1.updateBusinessDescription("This is Listing 1");
+
+        Listing expected2 = new Listing();
+        expected2.updateBusinessDescription("This is Listing 2");
+
+        Listing[] advListing = adv.obtainListings();
+
+        boolean expectedVsList = (expected.equalTo(advListing[0])) && (expected1.equalTo(advListing[1])) && (expected2.equalTo(advListing[2])) &&  (advListing.length == 3);
+
+        assertTrue("Advertiser has more than one listing", expectedVsList);
+
+    }
+
+    /*Test for different types of listing*/
 }

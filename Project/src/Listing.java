@@ -2,12 +2,12 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class Listing {
-    private String businessDescr;
-    private String imageLoc;
-    private String websiteLink;
-    private String startDate;
-    private String endDate;
-    private double price;
+    private String businessDescr = "";
+    private String imageLoc = "";
+    private String websiteLink = "";
+    private String startDate = "";
+    private String endDate = "";
+    private double price = 0.00;
 
     public Listing(){
 
@@ -93,5 +93,16 @@ public class Listing {
 
     public String obtainEndDate(){
         return endDate;
+    }
+
+    public boolean equalTo(Listing l){
+        if(this.obtainBusinessDescription().equals(l.obtainBusinessDescription()) &&
+                this.obtainEndDate().equals(l.obtainEndDate()) &&
+                    this.obtainStartDate().equals(l.obtainStartDate()) &&
+                        this.obtainImageLoc().equals(l.obtainImageLoc()) &&
+                            this.price == l.obtainPrice()){
+            return true;
+        }
+        return false;
     }
 }

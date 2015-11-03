@@ -29,4 +29,6 @@ public class CategoryListing extends Listing {
     public String obtainCategoryGenre(){
         return category.obtainGenre();
     }
+
+    //should override equalsTo ??? o_0
 }

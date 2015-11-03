@@ -1,11 +1,9 @@
 import org.junit.Test;
-
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class ListingTests {
     @Test
@@ -90,5 +88,19 @@ public class ListingTests {
         listing.updateEndDate("Dec 31, 2001");
         String startDate = listing.obtainEndDate();
         assertEquals("Can give listing an end date (with String)", "Dec 31, 2001", startDate);
+    }
+
+    @Test
+    public void testListingAreEqual(){
+        Listing listing = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing1 = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        assertTrue("Listings should be equal", listing.equalTo(listing1));
+    }
+
+    @Test
+    public void testListingAreNotEqual(){
+        Listing listing = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing1 = new Listing("This is another listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        assertFalse("Listings should not be equal", listing.equalTo(listing1));
     }
 }
