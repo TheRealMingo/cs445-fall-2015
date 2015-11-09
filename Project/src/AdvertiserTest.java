@@ -166,4 +166,39 @@ public class AdvertiserTest {
     }
 
     /*Test for different types of listing*/
+    @Test
+    public void testAdvertiserHaveManyDifferentTypesOfListing(){
+        Advertiser adv = new Advertiser();
+
+        Listing listing = new CategoryListing(new Category("History"));
+        listing.updateBusinessDescription("A category listing");
+
+        Listing listing1 = new HomeFeaturedListing();
+        listing1.updateBusinessDescription("A home featured listing");
+
+        Listing listing2 = new Listing();
+        listing2.updateBusinessDescription("A regular listing");
+
+        adv.giveListing(listing);
+        adv.giveListing(listing1);
+        adv.giveListing(listing2);
+
+        Listing expected = new CategoryListing(new Category("History"));
+        expected.updateBusinessDescription("A category listing");
+
+        Listing expected1 = new HomeFeaturedListing();
+        expected1.updateBusinessDescription("A home featured listing");
+
+        Listing expected2 = new Listing();
+        expected2.updateBusinessDescription("A regular listing");
+
+        Listing[] advListing = adv.obtainListings();
+
+        boolean expectedVsList = (expected.equalTo(advListing[0])) && (expected1.equalTo(advListing[1])) && (expected2.equalTo(advListing[2]));
+
+        assertTrue("Advertiser has more than one listing and they are of different types", expectedVsList);
+        assertTrue("Category Listing remained a category listing", advListing[0] instanceof CategoryListing);
+        assertTrue("Home-featured Listing remained a home featured listing", advListing[1] instanceof HomeFeaturedListing);
+        assertTrue("Lisitng is just a listing", advListing[2] instanceof  Listing);
+    }
 }

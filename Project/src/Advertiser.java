@@ -17,7 +17,50 @@ public class Advertiser {
     private ArrayList<String> socialMedia = new ArrayList<String>();
     private ArrayList<Listing> theListings = new ArrayList<Listing>();
     /*Format of Social Media {"Facebook:something", "Linkedin:somethingElse", ... } */
+    public Advertiser(){
+        fname = "";
+        mname = "";
+        lname = "";
+        suffix = "";
+        emailAddr = "";
+        businessName = "";
+        phoneNumber = "";
+        startDate = "";
+    };
+    public Advertiser(Advertiser adv){
+        this.fname = adv.obtainFirstName();
+        this.mname = adv.obtainMiddleName();
+        this.lname = adv.obtainLastName();
+        this.suffix = adv.obtainSuffix();
+        this.emailAddr = adv.obtainEmailAddress();
+        this.businessName = adv.obtainBusinessName();
+        this.phoneNumber = adv.obtainPhoneNumber();
+        this.startDate = adv.obtainStartDate();
+        String[] socialMediaArray = adv.obtainAllSocialMedia().clone();
+        String[] socialMediaCopy = new String[socialMediaArray.length];
+        for(int i = 0; i < socialMediaArray.length; i++){
+            socialMediaCopy[i] = new String(socialMediaArray[i]);
+            socialMedia.add(socialMediaCopy[i]);
+        }
+        Listing[] theListingArray = adv.obtainListings().clone();
+        Listing[] theListingCopy = new Listing[theListingArray.length];
 
+        for(int i = 0; i < theListingArray.length; i++){
+            theListingCopy[i] = new Listing(theListingArray[i]);
+            theListings.add(theListingCopy[i]);
+        }
+
+    }
+    public Advertiser(String fname, String mname, String lname, String suffix, String emailAddr, String businessName, String phoneNumber, String startDate){
+        this.fname = fname;
+        this.mname = mname;
+        this.lname = lname;
+        this.suffix = suffix;
+        this.emailAddr = emailAddr;
+        this.businessName = businessName;
+        this.phoneNumber = phoneNumber;
+        this.startDate = startDate;
+    }
     public void updatePhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
@@ -90,7 +133,7 @@ public class Advertiser {
         return suffix;
     }
     public String obtainFullName(){
-        return (fname + (mname != null ? " " + mname + " " : " ") + lname + (suffix != null ? " " + suffix + " " : "")).trim();
+        return (fname + (mname != "" ? " " + mname + " " : " ") + lname + (suffix != "" ? " " + suffix + " " : "")).trim();
     }
     public String[] obtainAllSocialMedia(){
         String[] theSocialMedia = new String[socialMedia.size()];

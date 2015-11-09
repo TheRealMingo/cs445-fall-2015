@@ -2,6 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class Listing {
+    private Advertiser adv = null;
     private String businessDescr = "";
     private String imageLoc = "";
     private String websiteLink = "";
@@ -13,24 +14,39 @@ public class Listing {
 
     }
 
-    public Listing(String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
-        this.businessDescr = businessDescr;
-        this.imageLoc = imageLoc;
-        this.websiteLink = websiteLink;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Listing(Listing l){
+        this.businessDescr = new String(l.obtainBusinessDescription());
+        this.imageLoc = new String(l.obtainImageLoc());
+        this.websiteLink = new String(l.obtainWebsiteLink());
+        this.startDate = new String(l.obtainStartDate());
+        this.endDate = new String(l.obtainEndDate());
+        this.price = l.obtainPrice();
+        this.adv = l.obtainAdvertiser();
+    }
+
+    public Listing(Advertiser adv, String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
+        this.adv = adv;
+        this.businessDescr = new String(businessDescr);
+        this.imageLoc = new String(imageLoc);
+        this.websiteLink = new String(websiteLink);
+        this.startDate = new String(startDate);
+        this.endDate = new String(endDate);
         this.price = price;
     }
+
+    public void updateAdvertiser(Advertiser adv){
+        this.adv = adv;
+    }
     public void updateBusinessDescription(String description){
-        businessDescr =  description;
+        businessDescr =  new String(description);
     }
 
     public void updateImageLoc(String location){
-        imageLoc = location;
+        imageLoc = new String(location);
     }
 
     public void updateWebsiteLink(String link){
-        websiteLink = link;
+        websiteLink = new String(link);
     }
 
     public void updatePrice(double price){
@@ -95,6 +111,8 @@ public class Listing {
         return endDate;
     }
 
+    public Advertiser obtainAdvertiser(){ return adv;}
+
     public boolean equalTo(Listing l){
         if(this.obtainBusinessDescription().equals(l.obtainBusinessDescription()) &&
                 this.obtainEndDate().equals(l.obtainEndDate()) &&
@@ -105,4 +123,5 @@ public class Listing {
         }
         return false;
     }
+
 }

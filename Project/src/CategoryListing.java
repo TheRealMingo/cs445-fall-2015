@@ -12,8 +12,8 @@ public class CategoryListing extends Listing {
         this.category = category;
     }
 
-    public CategoryListing(Category category, String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
-        super(businessDescr, imageLoc, websiteLink, startDate, endDate, price);
+    public CategoryListing(Advertiser adv, Category category, String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
+        super(adv, businessDescr, imageLoc, websiteLink, startDate, endDate, price);
         this.category = category;
     }
 
@@ -30,5 +30,12 @@ public class CategoryListing extends Listing {
         return category.obtainGenre();
     }
 
-    //should override equalsTo ??? o_0
+    public boolean equalTo(CategoryListing cl){
+        if(super.equalTo(cl) && category.equalsTo(cl.obtainCategory())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

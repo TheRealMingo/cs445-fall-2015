@@ -92,15 +92,15 @@ public class ListingTests {
 
     @Test
     public void testListingAreEqual(){
-        Listing listing = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
-        Listing listing1 = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing = new Listing(new Advertiser(),"This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing1 = new Listing(new Advertiser(), "This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
         assertTrue("Listings should be equal", listing.equalTo(listing1));
     }
 
     @Test
     public void testListingAreNotEqual(){
-        Listing listing = new Listing("This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
-        Listing listing1 = new Listing("This is another listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing = new Listing(new Advertiser(), "This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        Listing listing1 = new Listing(new Advertiser(), "This is another listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
         assertFalse("Listings should not be equal", listing.equalTo(listing1));
     }
 }
