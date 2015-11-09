@@ -10,5 +10,5 @@ public class Ant extends Creature {
 
     public void move(){
         System.out.println(toString() + " is crawling around.");
-    }
+    } 
 }
