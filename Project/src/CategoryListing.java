@@ -30,6 +30,12 @@ public class CategoryListing extends Listing {
         return category.obtainGenre();
     }
 
+
+    @Override
+    public boolean equalTo(Listing l){
+        return false;
+    }
+
     public boolean equalTo(CategoryListing cl){
         if(super.equalTo(cl) && category.equalsTo(cl.obtainCategory())){
             return true;

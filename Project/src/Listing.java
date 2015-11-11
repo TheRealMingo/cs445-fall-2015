@@ -113,6 +113,13 @@ public class Listing {
 
     public Advertiser obtainAdvertiser(){ return adv;}
 
+    public String obtainAdvertiserFirstName(){ return adv.obtainFirstName(); }
+    public String obtainAdvertiserMiddleName(){ return adv.obtainMiddleName(); }
+    public String obtainAdvertiserLastName(){return adv.obtainLastName(); }
+    public String obtainAdvertiserSuffix(){return adv.obtainSuffix(); }
+    public String obtainAdvertiserFullName(){return adv.obtainFullName(); }
+    public String obtainAdvertiserBusinessName(){return adv.obtainBusinessName();}
+
     public boolean equalTo(Listing l){
         if(this.obtainBusinessDescription().equals(l.obtainBusinessDescription()) &&
                 this.obtainEndDate().equals(l.obtainEndDate()) &&

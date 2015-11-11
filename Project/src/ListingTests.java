@@ -103,4 +103,22 @@ public class ListingTests {
         Listing listing1 = new Listing(new Advertiser(), "This is another listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
         assertFalse("Listings should not be equal", listing.equalTo(listing1));
     }
+
+    @Test
+    public void testListingCanObtainAdvertisersNames(){
+        Advertiser adv = new Advertiser();
+        adv.updateFirstName("Bob");
+        adv.updateMiddleName("The");
+        adv.updateLastName("Builder");
+        adv.updateSuffix("IV");
+        adv.updateBusinessName("Bob\'s Buildings");
+
+        Listing theListing = new Listing(adv, "This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
+        assertEquals("Can get advertiser\'s first name from listing", "Bob".trim(), theListing.obtainAdvertiserFirstName());
+        assertEquals("Can get advertiser\'s middle name from listing", "The".trim(), theListing.obtainAdvertiserMiddleName());
+        assertEquals("Can get advertiser\'s last name from listing", "Builder".trim(), theListing.obtainAdvertiserLastName());
+        assertEquals("Can get advertiser\'s suffix from listing", "IV".trim(), theListing.obtainAdvertiserSuffix());
+        assertEquals("Can get advertiser\'s  full name from listing", "Bob The Builder IV".trim(), theListing.obtainAdvertiserFullName());
+        assertEquals("Can get advertiser\'s business name", "Bob\'s Buildings".trim(), theListing.obtainAdvertiserBusinessName());
+    }
 }

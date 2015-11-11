@@ -170,10 +170,10 @@ public class AdvertiserTest {
     public void testAdvertiserHaveManyDifferentTypesOfListing(){
         Advertiser adv = new Advertiser();
 
-        Listing listing = new CategoryListing(new Category("History"));
+        CategoryListing listing = new CategoryListing(new Category("History"));
         listing.updateBusinessDescription("A category listing");
 
-        Listing listing1 = new HomeFeaturedListing();
+        HomeFeaturedListing listing1 = new HomeFeaturedListing();
         listing1.updateBusinessDescription("A home featured listing");
 
         Listing listing2 = new Listing();
@@ -183,10 +183,10 @@ public class AdvertiserTest {
         adv.giveListing(listing1);
         adv.giveListing(listing2);
 
-        Listing expected = new CategoryListing(new Category("History"));
+        CategoryListing expected = new CategoryListing(new Category("History"));
         expected.updateBusinessDescription("A category listing");
 
-        Listing expected1 = new HomeFeaturedListing();
+        HomeFeaturedListing expected1 = new HomeFeaturedListing();
         expected1.updateBusinessDescription("A home featured listing");
 
         Listing expected2 = new Listing();
@@ -194,7 +194,7 @@ public class AdvertiserTest {
 
         Listing[] advListing = adv.obtainListings();
 
-        boolean expectedVsList = (expected.equalTo(advListing[0])) && (expected1.equalTo(advListing[1])) && (expected2.equalTo(advListing[2]));
+        boolean expectedVsList = (expected.equalTo((CategoryListing)advListing[0])) && (expected1.equalTo((HomeFeaturedListing)advListing[1])) && (expected2.equalTo(advListing[2])); //might change to be more efficient
 
         assertTrue("Advertiser has more than one listing and they are of different types", expectedVsList);
         assertTrue("Category Listing remained a category listing", advListing[0] instanceof CategoryListing);

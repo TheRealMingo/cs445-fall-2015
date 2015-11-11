@@ -108,6 +108,12 @@ public class Advertiser {
     public void giveListing(Listing listing){
         theListings.add(listing);
     }
+    public void giveListing(CategoryListing listing){
+        theListings.add(listing);
+    }
+    public void giveListing(HomeFeaturedListing listing){
+        theListings.add(listing);
+    }
     public void addSocialMedia(String outlet, String content){
        socialMedia.add(outlet + ":" + content);
     }
