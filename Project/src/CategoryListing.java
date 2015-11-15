@@ -8,6 +8,16 @@ public class CategoryListing extends Listing {
         super();
     }
 
+    public CategoryListing(CategoryListing cl){
+        this.updateBusinessDescription(cl.obtainBusinessDescription());
+        this.updateImageLoc(cl.obtainImageLoc());
+        this.updateWebsiteLink(cl.obtainWebsiteLink());
+        this.updateStartDate(cl.obtainStartDate());
+        this.updateEndDate(cl.obtainEndDate());
+        this.updatePrice(cl.obtainPrice());
+        this.updateAdvertiser(cl.obtainAdvertiser());
+        this.updateCategory(cl.obtainCategoryGenre());
+    }
     public CategoryListing(Category category){
         this.category = category;
     }

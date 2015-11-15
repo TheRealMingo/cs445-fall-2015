@@ -51,37 +51,74 @@ public class ListingArray {
         return regularListing;
     }
 
-    public Listing[] getCategoryListings(){
+    public CategoryListing[] getCategoryListings(){
         int count = 0;
         for(int i = 0; i < theListingIndex; i++){
             if(theListing[i].getClass().getSimpleName().equals("CategoryListing")){
                 count++;
             }
         }
-        Listing[] categoryListing = new Listing[count];
+        CategoryListing[] categoryListing = new CategoryListing[count];
         count = 0;
         for(int i = 0; i < theListingIndex; i++) {
             if (theListing[i].getClass().getSimpleName().equals("CategoryListing")) {
-                categoryListing[count++] = theListing[i];
+                categoryListing[count++] = (CategoryListing)theListing[i];
             }
         }
         return categoryListing;
     }
 
-    public Listing[] getHomeFeaturedListings() {
+    public HomeFeaturedListing[] getHomeFeaturedListings() {
         int count = 0;
         for(int i = 0; i < theListingIndex; i++){
             if(theListing[i].getClass().getSimpleName().equals("HomeFeaturedListing")){
                 count++;
             }
         }
-        Listing[] homeFeaturedListing = new Listing[count];
+        HomeFeaturedListing[] homeFeaturedListing = new HomeFeaturedListing[count];
         count = 0;
         for (int i = 0; i < theListingIndex; i++) {
             if (theListing[i].getClass().getSimpleName().equals("HomeFeaturedListing")) {
-                homeFeaturedListing[count++] = theListing[i];
+                homeFeaturedListing[count++] = (HomeFeaturedListing)theListing[i];
             }
         }
         return homeFeaturedListing;
+    }
+
+    public Listing getListing(int pos){
+            if(pos >= 0 && pos <= num_of_listing){
+                return theListing[pos];
+            }
+            else{
+                return null;
+            }
+    }
+
+    public void replace(int pos, Listing listing){
+        if(pos >= 0 && pos <= num_of_listing) {
+            theListing[pos] = listing;
+        }
+    }
+
+    public Listing[] getAllListings(){
+        Listing[] temp = new Listing[theListingIndex];
+        String className = "";
+        for(int i = 0; i < theListingIndex; i++){
+            className = theListing[i].getClass().getSimpleName();
+            switch(className) {
+                case "CategoryListing":
+                    temp[i] = (CategoryListing)new CategoryListing((CategoryListing)theListing[i]);
+                    break;
+
+                case "HomeFeaturedListing":
+                    temp[i] = (HomeFeaturedListing)new HomeFeaturedListing((HomeFeaturedListing)theListing[i]);
+                    break;
+
+                case "Listing":
+                    temp[i] = new Listing(theListing[i]);
+                    break;
+            }
+        }
+        return temp;
     }
 }

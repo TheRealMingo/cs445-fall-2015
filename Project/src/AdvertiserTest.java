@@ -199,6 +199,6 @@ public class AdvertiserTest {
         assertTrue("Advertiser has more than one listing and they are of different types", expectedVsList);
         assertTrue("Category Listing remained a category listing", advListing[0] instanceof CategoryListing);
         assertTrue("Home-featured Listing remained a home featured listing", advListing[1] instanceof HomeFeaturedListing);
-        assertTrue("Lisitng is just a listing", advListing[2] instanceof  Listing);
+        assertTrue("Listitng is just a listing", advListing[2] instanceof  Listing);
     }
 }
