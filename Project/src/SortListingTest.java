@@ -149,5 +149,5 @@ public class SortListingTest {
 
         assertArrayEquals("Listings can be sorted by business name", expectedSortedBusinessNames, actualSortedBusinessNames);
     }
-    
+
 }

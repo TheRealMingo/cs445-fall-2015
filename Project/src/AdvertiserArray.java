@@ -41,6 +41,13 @@ public class AdvertiserArray {
         return num_of_adv;
     }
 
+    public Advertiser getAdvertiser(int pos){
+        if(pos >= 0 && pos < totalAmountofAdvertisers()){
+            return advertisers[pos];
+        }
+        return null;
+    }
+
     public Advertiser[] obtainAdvertisers(){
         Advertiser[] theAdvertisers = new Advertiser[num_of_adv];
         for(int i = 0; i < num_of_adv; i++){

@@ -159,4 +159,19 @@ public class Advertiser {
         return startDate;
     }
 
+    public boolean equalsTo(Advertiser adv){
+        if(phoneNumber.equals(adv.obtainPhoneNumber()) &&
+                businessName.equals(adv.obtainBusinessName()) &&
+                 fname.equals(adv.obtainFirstName()) &&
+                    mname.equals(adv.obtainMiddleName()) &&
+                        lname.equals(adv.obtainLastName()) &&
+                            suffix.equals(adv.obtainSuffix()) &&
+                              emailAddr.equals(adv.obtainEmailAddress()) &&
+                                startDate.equals(adv.obtainStartDate())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
