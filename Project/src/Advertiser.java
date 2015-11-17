@@ -148,6 +148,19 @@ public class Advertiser {
         }
         return theSocialMedia;
     }
+
+    public String obtainSocialMediaContent(String outlet){
+        for(int i = 0; i < socialMedia.size(); i++){
+            String currSocialMedia = socialMedia.get(i);
+            String[] outletContent = currSocialMedia.split(":");
+            String currOutlet = outletContent[0].toLowerCase();
+            String currContent = outletContent[1];
+            if(outlet.toLowerCase().equals(currOutlet)) {
+                return currContent;
+            }
+        }
+        return null;
+    }
     public Listing[] obtainListings(){
         Listing[] theListingsArray = new Listing[theListings.size()];
         for(int i = 0; i < theListingsArray.length; i++) {

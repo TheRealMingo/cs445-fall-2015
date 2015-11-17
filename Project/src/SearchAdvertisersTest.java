@@ -146,6 +146,69 @@ public class SearchAdvertisersTest {
     }
 
     @Test
+    public void testCanSearchBySocialMedia(){
+        /*
+        *
+    private Advertiser adv0 = new Advertiser("Bob", "", "Bill", "Jr.", "bob@business.net", "Business.net", "(773)324-9094", "Jan 03, 2012");
+    private Advertiser adv1 = new Advertiser("David", "Paul", "Jean", "", "jean@heroes.org", "Heroes.org", "(662)546-0967", "Feb 29, 2011");
+    private Advertiser adv2 = new Advertiser("Carl", "Bubba", "Jones", "IV", "carl@carl.com", "Carls Cars", "(445)939-0934", "Mar 20, 2010");
+    private Advertiser adv3 = new Advertiser("Antonio", "Anthony", "Antony", "II", "ant@welovepeople.org", "Every Deserves Love LLC", "(556)890-9403", "Jun 5, 2009");
+    private Advertiser adv4 = new Advertiser("Own", "Lloyd", "Dawg", "", "dawg@sad.com", "SAD: Special Advertising Directory", "(654)586-9843", "Apr 6, 2008");
+        *
+        * */
+        adv0.addSocialMedia("Facebook", "Business.net Profile");
+        adv0.addSocialMedia("Twitter", "Business.net Twitter Page");
+        adv0.addSocialMedia("LinkedIn", "Bob Bill Jr.");
+        aa.addAdvertiser(adv0);
+
+        adv1.addSocialMedia("Facebook", "Heroes.org Profile");
+        adv1.addSocialMedia("Twitter", "Heroes.org Twitter Page");
+        adv1.addSocialMedia("LinkedIn", "David Paul Jean");
+        aa.addAdvertiser(adv1);
+
+        adv2.addSocialMedia("Facebook", "Carls Cars Profile");
+        adv2.addSocialMedia("Twitter", "Carls Cars Twitter Page");
+        adv2.addSocialMedia("LinkedIn", "Carl Bubba Jones IV");
+        aa.addAdvertiser(adv2);
+
+        adv3.addSocialMedia("Facebook", "Every One Deserves Love LLC Profile");
+        adv3.addSocialMedia("Twitter", "Every One Deserves Love Twitter Page");
+        adv3.addSocialMedia("LinkedIn", "Antonio Anthony Antony II");
+        aa.addAdvertiser(adv3);
+
+        adv4.addSocialMedia("Facebook", "SAD: Special Advertising Directory Profile");
+        adv4.addSocialMedia("Twitter", "SAD: Special Advertising Directory Twitter Page");
+        adv4.addSocialMedia("LinkedIn", "Own Lloyd Dawg");
+        aa.addAdvertiser(adv4);
+
+        la.addListing(list0);
+        la.addListing(list1);
+        la.addListing(list2);
+        la.addListing(list3);
+        la.addListing(list4);
+        la.addListing(clist0);
+        la.addListing(clist1);
+        la.addListing(clist2);
+        la.addListing(clist3);
+        la.addListing(clist4);
+        la.addListing(hlist0);
+        la.addListing(hlist1);
+        la.addListing(hlist2);
+
+        Listing[] facebookTest = SearchAdvertisers.searchBySocialMedia(aa, la, "Facebook", "Business.net Profile");
+        Listing[] twitterTest = SearchAdvertisers.searchBySocialMedia(aa, la, "Twitter", "Heroes.org Twitter Page");
+        Listing[] linkedinTest = SearchAdvertisers.searchBySocialMedia(aa, la, "LinkedIn", "Antonio Anthony Antony II");
+
+        Listing[] facebookExpected = {list0, clist0, hlist0};
+        Listing[] twitterExpected = {list1, clist1, hlist1};
+        Listing[] linkedinExpected = {list3, clist3};
+
+        assertArrayEquals("Can Search By Facebook", facebookExpected ,facebookTest);
+        assertArrayEquals("Can Search By Twitter",  twitterExpected ,twitterTest);
+        assertArrayEquals("Can Search By LinkedIn",linkedinExpected ,linkedinTest);
+    }
+
+    @Test
     public void testNullIsReturnedWhenNeeded(){
         aa.addAdvertiser(adv0);
         aa.addAdvertiser(adv1);

@@ -129,4 +129,37 @@ public class SearchAdvertisers {
         }
         return listings;
     }
+
+    public static Listing[] searchBySocialMedia(AdvertiserArray theAdvertisers, ListingArray theListings, String outlet, String content){
+        Advertiser theAdvertiser = new Advertiser();
+        for(int i = 0; i < theAdvertisers.totalAmountofAdvertisers(); i++){
+            String socialMediaContent = theAdvertisers.getAdvertiser(i).obtainSocialMediaContent(outlet);
+            if(socialMediaContent.equals(content) ){
+                theAdvertiser = theAdvertisers.getAdvertiser(i);
+                break;
+            }
+        }
+
+        if(theAdvertiser.equalsTo(new Advertiser())){
+            return null;
+        }
+
+        int num_of_listings_for_adv = 0;
+        for(int i = 0; i < theListings.getTotalNumOfListing(); i++){
+            Advertiser currentAdv = theListings.getListing(i).obtainAdvertiser();
+            if(currentAdv.equalsTo(theAdvertiser)){
+                ++num_of_listings_for_adv;
+            }
+        }
+
+        Listing[] listings = new Listing[num_of_listings_for_adv];
+        int listingIndex = 0;
+        for(int i = 0; i < theListings.getTotalNumOfListing(); i++){
+            Advertiser currentAdv = theListings.getListing(i).obtainAdvertiser();
+            if(currentAdv.equalsTo(theAdvertiser)){
+                listings[listingIndex++] = theListings.getListing(i);
+            }
+        }
+        return listings;
+    }
 }
