@@ -1,5 +1,6 @@
 package sad.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -7,6 +8,8 @@ import java.util.GregorianCalendar;
 /**
  * Created by Anthony on 11/3/2015.
  */
+
+@XmlRootElement
 public class Advertiser {
     private String fname;
     private String mname;
@@ -17,6 +20,7 @@ public class Advertiser {
     private String phoneNumber;
     private String startDate;
     private static int num_of_adv = 0;
+    private boolean idSet = false;
     private int id;
     private ArrayList<String> socialMedia = new ArrayList<String>();
     private ArrayList<Listing> theListings = new ArrayList<Listing>();
@@ -31,23 +35,24 @@ public class Advertiser {
         phoneNumber = "";
         startDate = "";
         id = num_of_adv++;
-    };
+        idSet = true;
+    }
     public Advertiser(Advertiser adv){
-        this.fname = adv.obtainFirstName();
-        this.mname = adv.obtainMiddleName();
-        this.lname = adv.obtainLastName();
-        this.suffix = adv.obtainSuffix();
-        this.emailAddr = adv.obtainEmailAddress();
-        this.businessName = adv.obtainBusinessName();
-        this.phoneNumber = adv.obtainPhoneNumber();
-        this.startDate = adv.obtainStartDate();
-        String[] socialMediaArray = adv.obtainAllSocialMedia().clone();
+        this.fname = adv.getFname();
+        this.mname = adv.getMname();
+        this.lname = adv.getLname();
+        this.suffix = adv.getSuffix();
+        this.emailAddr = adv.getEmailAddr();
+        this.businessName = adv.getBusinessName();
+        this.phoneNumber = adv.getPhoneNumber();
+        this.startDate = adv.getStartDate();
+        String[] socialMediaArray = adv.getAllSocialMedia().clone();
         String[] socialMediaCopy = new String[socialMediaArray.length];
         for(int i = 0; i < socialMediaArray.length; i++){
             socialMediaCopy[i] = new String(socialMediaArray[i]);
             socialMedia.add(socialMediaCopy[i]);
         }
-        Listing[] theListingArray = adv.obtainListings().clone();
+        Listing[] theListingArray = adv.getListings().clone();
         Listing[] theListingCopy = new Listing[theListingArray.length];
 
         for(int i = 0; i < theListingArray.length; i++){
@@ -55,6 +60,7 @@ public class Advertiser {
             theListings.add(theListingCopy[i]);
         }
         id = num_of_adv++;
+        idSet = true;
     }
     public Advertiser(String fname, String mname, String lname, String suffix, String emailAddr, String businessName, String phoneNumber, String startDate){
         this.fname = fname;
@@ -66,29 +72,35 @@ public class Advertiser {
         this.phoneNumber = phoneNumber;
         this.startDate = startDate;
         id = num_of_adv++;
+        idSet = true;
     }
-    public void updatePhoneNumber(String phoneNumber){
+    public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
-    public void updateBusinessName(String businessName){
+    public void setBusinessName(String businessName){
         this.businessName = businessName;
     }
-    public void updateEmailAddress(String emailAddr){
+    public void setEmailAddr(String emailAddr){
         this.emailAddr = emailAddr;
     }
-    public void updateFirstName(String fname){
+    public void setFname(String fname){
         this.fname = fname;
     }
-    public void updateMiddleName(String mname){
+    public void setMname(String mname){
         this.mname = mname;
     }
-    public void updateLastName(String lname){
+    public void setLname(String lname){
         this.lname = lname;
     }
-    public void updateSuffix(String suffix){
+    public void setSuffix(String suffix){
         this.suffix = suffix;
     }
-    public void updateSocialMedia(String outlet, String content){
+    public void setId(int id){
+        if(!idSet){
+            this.id = id;
+        }
+    }
+    public void setSocialMedia(String outlet, String content){
         int i = 0;
         for(i = 0; i < socialMedia.size(); i++){
             String theOutlet = socialMedia.get(i).split(":")[0];
@@ -97,20 +109,21 @@ public class Advertiser {
             }
         }
     }
-    public void updateStartDate(String startDate){
+    public void setStartDate(String startDate){
         this.startDate = startDate;  //have to validate format
     }
-    public void updateStartDate(GregorianCalendar startDate){
+    public void setStartDate(GregorianCalendar startDate){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         date.setCalendar(startDate);
         this.startDate = date.format(startDate.getTimeInMillis());
     }
-    public void updateStartDate(int year, int month, int day){
+    public void setStartDate(int year, int month, int day){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         GregorianCalendar calenderDate = new GregorianCalendar(year, month-1, day);
         date.setCalendar(calenderDate);
         this.startDate = date.format(calenderDate.getTimeInMillis());
     }
+    public void setSocialMedia(ArrayList<String> socialMedia){this.socialMedia = socialMedia;}
     public void giveListing(Listing listing){
         theListings.add(listing);
     }
@@ -124,42 +137,42 @@ public class Advertiser {
        socialMedia.add(outlet + ":" + content);
     }
 
-    public int obtainID(){
+    public int getId(){
         return  id;
     }
-    public String obtainPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
-    public String obtainBusinessName(){
+    public String getBusinessName(){
         return businessName;
     }
-    public String obtainEmailAddress(){
+    public String getEmailAddr(){
         return emailAddr;
     }
-    public String obtainFirstName(){
+    public String getFname(){
         return fname;
     }
-    public String obtainMiddleName(){
+    public String getMname(){
         return mname;
     }
-    public String obtainLastName(){
+    public String getLname(){
         return lname;
     }
-    public String obtainSuffix(){
+    public String getSuffix(){
         return suffix;
     }
-    public String obtainFullName(){
+    public String getFullName(){
         return (fname + (mname != "" ? " " + mname + " " : " ") + lname + (suffix != "" ? " " + suffix + " " : "")).trim();
     }
-    public String[] obtainAllSocialMedia(){
+    public ArrayList<String> getSocialMedia(){return socialMedia;}
+    public String[] getAllSocialMedia(){
         String[] theSocialMedia = new String[socialMedia.size()];
         for(int i = 0; i < theSocialMedia.length; i++){
             theSocialMedia[i] = socialMedia.get(i);
         }
         return theSocialMedia;
     }
-
-    public String obtainSocialMediaContent(String outlet){
+    public String getSocialMediaContent(String outlet){
         for(int i = 0; i < socialMedia.size(); i++){
             String currSocialMedia = socialMedia.get(i);
             String[] outletContent = currSocialMedia.split(":");
@@ -171,26 +184,26 @@ public class Advertiser {
         }
         return null;
     }
-    public Listing[] obtainListings(){
+    public Listing[] getListings(){
         Listing[] theListingsArray = new Listing[theListings.size()];
         for(int i = 0; i < theListingsArray.length; i++) {
             theListingsArray[i] = theListings.get(i);
         }
         return theListingsArray;
     }
-    public String obtainStartDate(){
+    public String getStartDate(){
         return startDate;
     }
 
     public boolean equalsTo(Advertiser adv){
-        if(phoneNumber.equals(adv.obtainPhoneNumber()) &&
-                businessName.equals(adv.obtainBusinessName()) &&
-                 fname.equals(adv.obtainFirstName()) &&
-                    mname.equals(adv.obtainMiddleName()) &&
-                        lname.equals(adv.obtainLastName()) &&
-                            suffix.equals(adv.obtainSuffix()) &&
-                              emailAddr.equals(adv.obtainEmailAddress()) &&
-                                startDate.equals(adv.obtainStartDate())){
+        if(phoneNumber.equals(adv.getPhoneNumber()) &&
+                businessName.equals(adv.getBusinessName()) &&
+                 fname.equals(adv.getFname()) &&
+                    mname.equals(adv.getMname()) &&
+                        lname.equals(adv.getLname()) &&
+                            suffix.equals(adv.getSuffix()) &&
+                              emailAddr.equals(adv.getEmailAddr()) &&
+                                startDate.equals(adv.getStartDate())){
             return true;
         }
         else{

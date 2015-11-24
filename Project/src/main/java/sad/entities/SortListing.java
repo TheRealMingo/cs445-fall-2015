@@ -11,9 +11,9 @@ public class SortListing {
     public static void sortByAdvertisersLastName(ListingArray listings) {
         String currLastName;
         for (int i = 0; i < listings.getTotalNumOfListing(); i++) {
-            currLastName = listings.getListing(i).obtainAdvertiserLastName();
+            currLastName = listings.getListing(i).getAdvertiserLastName();
             for (int j = 0; j < listings.getTotalNumOfListing(); j++) {
-                if (currLastName.compareTo(listings.getListing(j).obtainAdvertiserLastName()) < 0) {
+                if (currLastName.compareTo(listings.getListing(j).getAdvertiserLastName()) < 0) {
                     Listing temp = listings.getListing(i);
                     listings.replace(i, listings.getListing(j));
                     listings.replace(j, temp);
@@ -25,9 +25,9 @@ public class SortListing {
     public static void sortByBusinessName(ListingArray listings){
         String currBusiness;
         for (int i = 0; i < listings.getTotalNumOfListing(); i++) {
-            currBusiness = listings.getListing(i).obtainAdvertiserBusinessName();
+            currBusiness = listings.getListing(i).getAdvertiserBusinessName();
             for (int j = 0; j < listings.getTotalNumOfListing(); j++) {
-                if (currBusiness.compareTo(listings.getListing(j).obtainAdvertiserBusinessName()) < 0) {
+                if (currBusiness.compareTo(listings.getListing(j).getAdvertiserBusinessName()) < 0) {
                     Listing temp = listings.getListing(i);
                     listings.replace(i, listings.getListing(j));
                     listings.replace(j, temp);
@@ -42,7 +42,7 @@ public class SortListing {
 
         for(int i = 0; i < listings.getTotalNumOfListing(); i++){
             try {
-                dates[i] = dateFormatter.parse(listings.getListing(i).obtainStartDate());
+                dates[i] = dateFormatter.parse(listings.getListing(i).getStartDate());
             }
             catch(java.text.ParseException pe){
                 System.out.println("Cause: " + pe.getCause() + "\nMessage: " + pe.getMessage());
@@ -71,9 +71,9 @@ public class SortListing {
         double[] profits = new double[listings.getTotalNumOfListing()];
         for(int i = 0; i < listings.getTotalNumOfListing(); i++){
             try {
-                Date dateStart = dateFormatter.parse(listings.getListing(i).obtainStartDate());
-                Date dateEnd = dateFormatter.parse(listings.getListing(i).obtainEndDate());
-                profits[i] = (dateEnd.getTime() - dateStart.getTime()) * listings.getListing(i).obtainPrice();
+                Date dateStart = dateFormatter.parse(listings.getListing(i).getStartDate());
+                Date dateEnd = dateFormatter.parse(listings.getListing(i).getEndDate());
+                profits[i] = (dateEnd.getTime() - dateStart.getTime()) * listings.getListing(i).getPrice();
             }
             catch(java.text.ParseException pe){
                 System.out.println("Cause: " + pe.getCause() + "\nMessage: " + pe.getMessage());

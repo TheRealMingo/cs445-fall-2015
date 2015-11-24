@@ -13,8 +13,8 @@ public class ListingTests {
     @Test
     public void testListingCanGiveBusinessDescription(){
         Listing listing = new Listing();
-        listing.updateBusinessDescription("This is a business description.");
-        String businessDescription = listing.obtainBusinessDescription();
+        listing.setBusinessDescription("This is a business description.");
+        String businessDescription = listing.getBusinessDescription();
         assertEquals("Can give listing a business description.", "This is a business description.", businessDescription);
     }
 
@@ -22,8 +22,8 @@ public class ListingTests {
     public void testListingCanGiveImageLoc(){
         Listing listing = new Listing();
         String location = "C:\\Users\\Public\\Images\\animal.jpg";
-        listing.updateImageLoc(location);
-        String listLocation = listing.obtainImageLoc();
+        listing.setImageLoc(location);
+        String listLocation = listing.getImageLoc();
         assertEquals("Can give listing a image location.", "C:\\Users\\Public\\Images\\animal.jpg", listLocation);
     }
 
@@ -31,8 +31,8 @@ public class ListingTests {
     public void testListingCanGiveWebsiteLink(){
         Listing listing = new Listing();
         String websiteLink = "http://www.advertiser.com/";
-        listing.updateWebsiteLink(websiteLink);
-        String listWebsiteLink = listing.obtainWebsiteLink();
+        listing.setWebsiteLink(websiteLink);
+        String listWebsiteLink = listing.getWebsiteLink();
         assertEquals("Can give listing a website link.", "http://www.advertiser.com/", listWebsiteLink);
     }
 
@@ -40,48 +40,48 @@ public class ListingTests {
     public void testListingCanGivePrice(){
         Listing listing = new Listing();
         double price = 12.50;
-        listing.updatePrice(price);
-        double listPrice = listing.obtainPrice();
+        listing.setPrice(price);
+        double listPrice = listing.getPrice();
         assertEquals("Can give listing a price.", 12.50, listPrice,0.001);
     }
 
     @Test
     public void testListingCanGiveStartDate(){
         Listing listing = new Listing();
-        listing.updateStartDate(new GregorianCalendar(2001, 0, 2));
-        String startDate = listing.obtainStartDate();
+        listing.setStartDate(new GregorianCalendar(2001, 0, 2));
+        String startDate = listing.getStartDate();
         assertEquals("Can give listing a start date (with Gregorian Calendar class)", "Jan 02, 2001", startDate);
     }
 
     @Test
     public void testListingCanGiveStartDate2(){
         Listing listing = new Listing();
-        listing.updateStartDate(2001, 1, 2);
-        String startDate = listing.obtainStartDate();
+        listing.setStartDate(2001, 1, 2);
+        String startDate = listing.getStartDate();
         assertEquals("Can give listing a start date (with 3 integers)", "Jan 02, 2001", startDate);
     }
 
     @Test
     public void testListingCanGiveStartDate3(){
         Listing listing = new Listing();
-        listing.updateStartDate("Jan 02, 2001");
-        String startDate = listing.obtainStartDate();
+        listing.setStartDate("Jan 02, 2001");
+        String startDate = listing.getStartDate();
         assertEquals("Can give listing a start date (with String)", "Jan 02, 2001", startDate);
     }
 
     @Test
     public void testListingCanGiveEndDate(){
         Listing listing = new Listing();
-        listing.updateEndDate(new GregorianCalendar(2001, 11, 31));
-        String endDate = listing.obtainEndDate();
+        listing.setEndDate(new GregorianCalendar(2001, 11, 31));
+        String endDate = listing.getEndDate();
         assertEquals("Can give listing an end date (with Gregorian Calendar class)", "Dec 31, 2001", endDate);
     }
 
     @Test
     public void testListingCanGiveEndDate2(){
         Listing listing = new Listing();
-        listing.updateEndDate(2001, 12, 31);
-        String endDate = listing.obtainEndDate();
+        listing.setEndDate(2001, 12, 31);
+        String endDate = listing.getEndDate();
         assertEquals("Can give listing an end date (with 3 integers)", "Dec 31, 2001", endDate);
     }
 
@@ -89,8 +89,8 @@ public class ListingTests {
     @Test
     public void testListingCanGiveEndDate3(){
         Listing listing = new Listing();
-        listing.updateEndDate("Dec 31, 2001");
-        String startDate = listing.obtainEndDate();
+        listing.setEndDate("Dec 31, 2001");
+        String startDate = listing.getEndDate();
         assertEquals("Can give listing an end date (with String)", "Dec 31, 2001", startDate);
     }
 
@@ -111,18 +111,18 @@ public class ListingTests {
     @Test
     public void testListingCanObtainAdvertisersNames(){
         Advertiser adv = new Advertiser();
-        adv.updateFirstName("Bob");
-        adv.updateMiddleName("The");
-        adv.updateLastName("Builder");
-        adv.updateSuffix("IV");
-        adv.updateBusinessName("Bob\'s Buildings");
+        adv.setFname("Bob");
+        adv.setMname("The");
+        adv.setLname("Builder");
+        adv.setSuffix("IV");
+        adv.setBusinessName("Bob\'s Buildings");
 
         Listing theListing = new Listing(adv, "This is a listing", "C:\\images\\image.jpg", "http://www.business.com/", "Jan 01, 2014", "Jan 01, 2015", 30.25);
-        assertEquals("Can get advertiser\'s first name from listing", "Bob".trim(), theListing.obtainAdvertiserFirstName());
-        assertEquals("Can get advertiser\'s middle name from listing", "The".trim(), theListing.obtainAdvertiserMiddleName());
-        assertEquals("Can get advertiser\'s last name from listing", "Builder".trim(), theListing.obtainAdvertiserLastName());
-        assertEquals("Can get advertiser\'s suffix from listing", "IV".trim(), theListing.obtainAdvertiserSuffix());
-        assertEquals("Can get advertiser\'s  full name from listing", "Bob The Builder IV".trim(), theListing.obtainAdvertiserFullName());
-        assertEquals("Can get advertiser\'s business name", "Bob\'s Buildings".trim(), theListing.obtainAdvertiserBusinessName());
+        assertEquals("Can get advertiser\'s first name from listing", "Bob".trim(), theListing.getAdvertiserFirstName());
+        assertEquals("Can get advertiser\'s middle name from listing", "The".trim(), theListing.getAdvertiserMiddleName());
+        assertEquals("Can get advertiser\'s last name from listing", "Builder".trim(), theListing.getAdvertiserLastName());
+        assertEquals("Can get advertiser\'s suffix from listing", "IV".trim(), theListing.getAdvertiserSuffix());
+        assertEquals("Can get advertiser\'s  full name from listing", "Bob The Builder IV".trim(), theListing.getAdvertiserFullName());
+        assertEquals("Can get advertiser\'s business name", "Bob\'s Buildings".trim(), theListing.getAdvertiserBusinessName());
     }
 }

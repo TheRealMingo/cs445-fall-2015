@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 /**
  * Created by Anthony on 11/9/2015.
  */
@@ -42,8 +44,21 @@ public class AdvertisersArrayTest {
         String[] sortedByLastName = new String[]{"Antony", "Bill", "Dawg", "Jean", "Jones"};
 
         Advertiser[] advs = advertisers.obtainAdvertisers();
-        String[] result = new String[]{advs[0].obtainLastName(), advs[1].obtainLastName(), advs[2].obtainLastName(), advs[3].obtainLastName(), advs[4].obtainLastName()};
+        String[] result = new String[]{advs[0].getLname(), advs[1].getLname(), advs[2].getLname(), advs[3].getLname(), advs[4].getLname()};
         assertArrayEquals("Advertisers are added in alphabetical order by last name", sortedByLastName, result);
+    }
+
+    @Test
+    public void testAdvertiserCopiesAndAdvertisersShouldNotBeTheSame(){
+        AdvertiserArray advertisers = new AdvertiserArray();
+
+        advertisers.addAdvertiser(adv0);
+        advertisers.addAdvertiser(adv1);
+        advertisers.addAdvertiser(adv2);
+        advertisers.addAdvertiser(adv3);
+        advertisers.addAdvertiser(adv4);
+
+        assertNotEquals("Arrays should not be equal", advertisers.obtainAdvertiserCopies(), advertisers.obtainAdvertisers());
     }
 
     @Test
@@ -56,6 +71,5 @@ public class AdvertisersArrayTest {
 
         assertEquals("main.entities.Advertiser has over 100 elements", 300, advertiserArray.totalAmountofAdvertisers());
     }
-
 
 }

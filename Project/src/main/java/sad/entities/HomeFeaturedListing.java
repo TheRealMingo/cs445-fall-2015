@@ -13,6 +13,6 @@ public class HomeFeaturedListing extends Listing {
     }
 
     public HomeFeaturedListing(HomeFeaturedListing hfl){
-        super(hfl.obtainAdvertiser(), hfl.obtainBusinessDescription(), hfl.obtainImageLoc(), hfl.obtainWebsiteLink(), hfl.obtainStartDate(), hfl.obtainEndDate(), hfl.obtainPrice());
+        super(hfl.getAdvertiser(), hfl.getBusinessDescription(), hfl.getImageLoc(), hfl.getWebsiteLink(), hfl.getStartDate(), hfl.getEndDate(), hfl.getPrice());
     }
 }

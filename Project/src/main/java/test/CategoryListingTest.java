@@ -11,9 +11,9 @@ public class CategoryListingTest {
     @Test
     public void testCategoryListingHasCategory(){
         CategoryListing cl = new CategoryListing();
-        cl.updateCategory("History");
+        cl.setCategory("History");
         String expected = "History";
-        String theCategory = cl.obtainCategoryGenre();
+        String theCategory = cl.getCategoryGenre();
         assertEquals("main.entities.CategoryListing has a main.entities.Category", expected, theCategory);
     }
 
@@ -25,7 +25,7 @@ public class CategoryListingTest {
         c.giveSubcategory("Japan");
         CategoryListing cl = new CategoryListing(c);
         String[] expected = {"USA", "China", "Japan"};
-        String[] categories = cl.obtainCategory().obtainSubcategoriesNames();
+        String[] categories = cl.getCategory().obtainSubcategoriesNames();
         assertArrayEquals("main.entities.CategoryListing has a main.entities.Category with Subcategories", expected, categories);
     }
 }

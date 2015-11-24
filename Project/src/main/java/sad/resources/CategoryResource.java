@@ -1,11 +1,15 @@
 package sad.resources;
 
 import sad.entities.Category;
+import sad.entities.CategoryListing;
+import sad.entities.Listing;
 import system.Main;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by Anthony on 11/22/2015.
@@ -13,6 +17,24 @@ import javax.ws.rs.core.Response;
 
 @Path("categories")
 public class CategoryResource {
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Category[] getCategories(){
+        return Main.system.getCategories();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listings/{category: .*}")
+    public CategoryListing[] getListingsWithCategory(@PathParam("category")List<PathSegment> categories){
+        String[] catNsubcat = new String[categories.size()];
+        for(int i = 0; i < categories.size();i++){
+            catNsubcat[i] = categories.get(i).getPath();
+        }
+        Main.system.getListingsOfCategoryAndSubcategories(catNsubcat);
+        return null;
+    }
+
     @POST
     @Path("category")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -22,7 +44,7 @@ public class CategoryResource {
         return category;
     }
 
-    @POST
+    @DELETE
     @Path("remove/{category}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,12 +71,6 @@ public class CategoryResource {
             }
         }
         return currCategory;
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Category[] getCategories(){
-        return Main.system.getCategories();
     }
 
 }

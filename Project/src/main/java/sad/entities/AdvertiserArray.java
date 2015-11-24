@@ -11,9 +11,9 @@ public class AdvertiserArray {
     public void sortAdvertiserByLastName(){
         String currLastName;
         for(int i = 0; i < num_of_adv; i++){
-            currLastName = advertisers[i].obtainLastName();
+            currLastName = advertisers[i].getLname();
             for(int j = i; j < num_of_adv; j++){
-                if(currLastName.compareTo(advertisers[j].obtainLastName()) > 0){
+                if(currLastName.compareTo(advertisers[j].getLname()) > 0){
                     Advertiser temp = advertisers[i];
                     advertisers[i] = advertisers[j];
                     advertisers[j] = temp;
@@ -30,8 +30,15 @@ public class AdvertiserArray {
         advertisers = temp;
     }
 
+    private void trimCapacity(){
+        Advertiser[] temp = new Advertiser[num_of_adv];
+        for(int i = 0; i < num_of_adv; i++){
+            temp[i] = advertisers[i];
+        }
+        advertisers = temp;
+    }
     public void addAdvertiser(Advertiser adv){
-        if(num_of_adv == advertisers.length){
+        if(num_of_adv >= advertisers.length){
             increaseCapacity();
         }
         advertisers[advertiserIndex++] = adv;
@@ -50,12 +57,17 @@ public class AdvertiserArray {
         return null;
     }
 
-    public Advertiser[] obtainAdvertisers(){
+    public Advertiser[] obtainAdvertiserCopies(){
         Advertiser[] theAdvertisers = new Advertiser[num_of_adv];
         for(int i = 0; i < num_of_adv; i++){
             theAdvertisers[i] = new Advertiser(advertisers[i]);
         }
         return theAdvertisers;
+    }
+
+    public Advertiser[] obtainAdvertisers(){
+        trimCapacity();
+        return advertisers;
     }
 
 }

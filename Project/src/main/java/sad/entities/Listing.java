@@ -1,8 +1,10 @@
 package sad.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+@XmlRootElement
 public class Listing {
     private Advertiser adv = null;
     private String businessDescr = "";
@@ -17,13 +19,13 @@ public class Listing {
     }
 
     public Listing(Listing l){
-        this.businessDescr = new String(l.obtainBusinessDescription());
-        this.imageLoc = new String(l.obtainImageLoc());
-        this.websiteLink = new String(l.obtainWebsiteLink());
-        this.startDate = new String(l.obtainStartDate());
-        this.endDate = new String(l.obtainEndDate());
-        this.price = l.obtainPrice();
-        this.adv = l.obtainAdvertiser();
+        this.businessDescr = new String(l.getBusinessDescription());
+        this.imageLoc = new String(l.getImageLoc());
+        this.websiteLink = new String(l.getWebsiteLink());
+        this.startDate = new String(l.getStartDate());
+        this.endDate = new String(l.getEndDate());
+        this.price = l.getPrice();
+        this.adv = l.getAdvertiser();
     }
 
     public Listing(Advertiser adv, String businessDescr, String imageLoc, String websiteLink, String startDate, String endDate, double price){
@@ -36,98 +38,94 @@ public class Listing {
         this.price = price;
     }
 
-    public void updateAdvertiser(Advertiser adv){
+    public void setAdvertiser(Advertiser adv){
         this.adv = adv;
     }
-    public void updateBusinessDescription(String description){
+    public void setBusinessDescription(String description){
         businessDescr =  new String(description);
     }
-
-    public void updateImageLoc(String location){
+    public void setImageLoc(String location){
         imageLoc = new String(location);
     }
-
-    public void updateWebsiteLink(String link){
+    public void setWebsiteLink(String link){
         websiteLink = new String(link);
     }
-
-    public void updatePrice(double price){
+    public void setPrice(double price){
         this.price = price;
     }
-
-    public void updateStartDate(GregorianCalendar startDate){
+    public void setStartDate(GregorianCalendar startDate){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         date.setCalendar(startDate);
         this.startDate = date.format(startDate.getTimeInMillis());
     }
 
-    public void updateStartDate(int year, int month, int day){
+    public void setStartDate(int year, int month, int day){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         GregorianCalendar calendarDate = new GregorianCalendar(year, month-1, day);
         date.setCalendar(calendarDate);
         this.startDate = date.format(calendarDate.getTimeInMillis());
     }
 
-    public void updateStartDate(String startDate){
+    public void setStartDate(String startDate){
         this.startDate = startDate;
     }
 
-    public void updateEndDate(GregorianCalendar endDate){
+    public void setEndDate(GregorianCalendar endDate){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         date.setCalendar(endDate);
         this.endDate = date.format(endDate.getTimeInMillis());
     }
 
-    public void updateEndDate(int year, int month, int day){
+    public void setEndDate(int year, int month, int day){
         SimpleDateFormat date = new SimpleDateFormat("MMM dd, yyyy");
         GregorianCalendar calendarDate = new GregorianCalendar(year, month-1, day);
         date.setCalendar(calendarDate);
         this.endDate = date.format(calendarDate.getTimeInMillis());
     }
 
-    public void updateEndDate(String endDate){
+    public void setEndDate(String endDate){
         this.endDate = endDate;
     }
 
-    public String obtainBusinessDescription(){
+    public String getBusinessDescription(){
         return businessDescr;
     }
 
-    public String obtainImageLoc(){
+    public String getImageLoc(){
         return imageLoc;
     }
 
-    public String obtainWebsiteLink(){
+    public String getWebsiteLink(){
         return websiteLink;
     }
 
-    public double obtainPrice(){
+    public double getPrice(){
         return price;
     }
 
-    public String obtainStartDate(){
+    public String getStartDate(){
         return startDate;
     }
 
-    public String obtainEndDate(){
+    public String getEndDate(){
         return endDate;
     }
 
-    public Advertiser obtainAdvertiser(){ return adv;}
+    public Advertiser getAdvertiser(){ return adv;}
 
-    public String obtainAdvertiserFirstName(){ return adv.obtainFirstName(); }
-    public String obtainAdvertiserMiddleName(){ return adv.obtainMiddleName(); }
-    public String obtainAdvertiserLastName(){return adv.obtainLastName(); }
-    public String obtainAdvertiserSuffix(){return adv.obtainSuffix(); }
-    public String obtainAdvertiserFullName(){return adv.obtainFullName(); }
-    public String obtainAdvertiserBusinessName(){return adv.obtainBusinessName();}
+    public String getAdvertiserFirstName(){ return adv.getFname(); }
+    public String getAdvertiserMiddleName(){ return adv.getMname(); }
+    public String getAdvertiserLastName(){return adv.getLname(); }
+    public String getAdvertiserSuffix(){return adv.getSuffix(); }
+    public String getAdvertiserFullName(){return adv.getFullName(); }
+    public String getAdvertiserBusinessName(){return adv.getBusinessName();}
 
     public boolean equalTo(Listing l){
-        if(this.obtainBusinessDescription().equals(l.obtainBusinessDescription()) &&
-                this.obtainEndDate().equals(l.obtainEndDate()) &&
-                    this.obtainStartDate().equals(l.obtainStartDate()) &&
-                        this.obtainImageLoc().equals(l.obtainImageLoc()) &&
-                            this.price == l.obtainPrice()){
+        if(this.getBusinessDescription().equals(l.getBusinessDescription()) &&
+                this.getEndDate().equals(l.getEndDate()) &&
+                    this.getStartDate().equals(l.getStartDate()) &&
+                        this.getImageLoc().equals(l.getImageLoc()) &&
+                            this.price == l.getPrice()){
             return true;
         }
         return false;

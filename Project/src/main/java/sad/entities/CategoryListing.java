@@ -1,8 +1,11 @@
 package sad.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Created by Anthony on 10/9/2015.
  */
+@XmlRootElement
 public class CategoryListing extends Listing {
     private Category category;
 
@@ -11,14 +14,14 @@ public class CategoryListing extends Listing {
     }
 
     public CategoryListing(CategoryListing cl){
-        this.updateBusinessDescription(cl.obtainBusinessDescription());
-        this.updateImageLoc(cl.obtainImageLoc());
-        this.updateWebsiteLink(cl.obtainWebsiteLink());
-        this.updateStartDate(cl.obtainStartDate());
-        this.updateEndDate(cl.obtainEndDate());
-        this.updatePrice(cl.obtainPrice());
-        this.updateAdvertiser(cl.obtainAdvertiser());
-        this.updateCategory(cl.obtainCategoryGenre());
+        this.setBusinessDescription(cl.getBusinessDescription());
+        this.setImageLoc(cl.getImageLoc());
+        this.setWebsiteLink(cl.getWebsiteLink());
+        this.setStartDate(cl.getStartDate());
+        this.setEndDate(cl.getEndDate());
+        this.setPrice(cl.getPrice());
+        this.setAdvertiser(cl.getAdvertiser());
+        this.setCategory(cl.getCategoryGenre());
     }
     public CategoryListing(Category category){
         this.category = category;
@@ -29,16 +32,20 @@ public class CategoryListing extends Listing {
         this.category = category;
     }
 
-    public void updateCategory(String s){
+    public void setCategory(String s){
         /*Check main.entities.Category is an the main.entities.Category Data Structure*/
         category = new Category(s);
     }
 
-    public Category obtainCategory(){
+    public void setCategory(Category category){
+        this.category = category;
+    }
+
+    public Category getCategory(){
         return category;
     }
 
-    public String obtainCategoryGenre(){
+    public String getCategoryGenre(){
         return category.getCategoryGenre();
     }
 
@@ -49,7 +56,7 @@ public class CategoryListing extends Listing {
     }
 
     public boolean equalTo(CategoryListing cl){
-        if(super.equalTo(cl) && category.equalsTo(cl.obtainCategory())){
+        if(super.equalTo(cl) && category.equalsTo(cl.getCategory())){
             return true;
         }
         else{

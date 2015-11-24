@@ -24,7 +24,7 @@ public class SearchAdvertisersTest {
         aa.addAdvertiser(adv4);
 
         Advertiser expected = adv2;
-        Advertiser actual = SearchAdvertisers.searchByID(aa, adv2.obtainID());
+        Advertiser actual = SearchAdvertisers.searchByID(aa, adv2.getId());
 
         assertEquals("Can search advertisers by id", expected, actual);
     }

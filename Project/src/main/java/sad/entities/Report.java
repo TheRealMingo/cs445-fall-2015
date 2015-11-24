@@ -17,8 +17,8 @@ public class Report {
 
         for(int i = 0; i < theListings.getTotalNumOfListing(); i++){
             try {
-                startDates[i] = dateFormatter.parse(theListings.getListing(i).obtainStartDate());
-                endDates[i] = dateFormatter.parse(theListings.getListing(i).obtainEndDate());
+                startDates[i] = dateFormatter.parse(theListings.getListing(i).getStartDate());
+                endDates[i] = dateFormatter.parse(theListings.getListing(i).getEndDate());
             }
             catch(java.text.ParseException pe){
                 System.out.println("Cause: " + pe.getCause() + "\nMessage: " + pe.getMessage());
@@ -49,7 +49,7 @@ public class Report {
         Date[] startDates = new Date[theAdvertisers.totalAmountofAdvertisers()];
         for(int i = 0; i < theAdvertisers.totalAmountofAdvertisers(); i++){
             try {
-                startDates[i] = dateFormatter.parse(theAdvertisers.getAdvertiser(i).obtainStartDate());
+                startDates[i] = dateFormatter.parse(theAdvertisers.getAdvertiser(i).getStartDate());
             }
             catch(java.text.ParseException pe){
                 System.out.println("Cause: " + pe.getCause() + "\nMessage: " + pe.getMessage());

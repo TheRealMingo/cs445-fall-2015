@@ -1,9 +1,8 @@
 package system;
 
-import sad.entities.AdvertiserArray;
-import sad.entities.Category;
-import sad.entities.CategoryArray;
-import sad.entities.ListingArray;
+import sad.entities.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by Anthony on 11/22/2015.
@@ -20,10 +19,15 @@ public class SAD {
         return sad;
     }
 
+    /**------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * ----------------------------- CATEGORY SECTION ------------------------------------
+     * ------------------------------------------------------------------------------------
+     * -------------------------------------------------------------------------------------
+     * **/
     public static void addCategory(Category c){
         categories.addCategory(c);
     }
-
     public static void deleteCategory(Category c){
        for(int i = 0; i < categories.getTotalNumOfCategories(); i++){
            if(categories.getCategory(i).equalsTo(c)){
@@ -31,7 +35,6 @@ public class SAD {
            }
        }
     }
-
     public static void deleteCategory(String c){
         int deletePos = -1;
 
@@ -52,7 +55,169 @@ public class SAD {
         return categories.obtainAllCategories();
     }
 
+    /**------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * ------------------------------- LISTING SECTION ------------------------------------
+     * ------------------------------------------------------------------------------------
+     * -------------------------------------------------------------------------------------
+     * **/
+
+    public static Listing[] getListings(){
+        return listings.getAllListings();
+    }
+
+    public static void addListing(Listing l){
+       listings.addListing(l);
+    }
+
+    public static void addListing(HomeFeaturedListing hfl){listings.addListing(hfl);}
+
+    public static void addListing(CategoryListing cl){
+        Category currCategory;
+        for(int i = 0; i < categories.getTotalNumOfCategories(); i++){
+            currCategory = categories.getCategory(i);
+            if(currCategory.getCategoryGenre().equals(cl.getCategory().getCategoryGenre())){
+                listings.addListing(cl);
+                break;
+            }
+        }
+    }
 
 
+    public static CategoryListing[] getCategoryListings() {
+        return listings.getCategoryListings();
+    }
 
+    public static CategoryListing[] getCategoryListingsOf(String category) {
+        ListingArray theListings = new ListingArray();
+        CategoryListing currCategoryListing;
+        for(int i = 0; i < listings.getCategoryListings().length; i++){
+            currCategoryListing = (CategoryListing)listings.getListing(i);
+            if(currCategoryListing.getCategoryGenre().equals(category)){
+                theListings.addListing(currCategoryListing);
+            }
+        }
+        return theListings.getCategoryListings();
+    }
+
+    public static HomeFeaturedListing[] getHomeFeaturedListings() {
+        return listings.getHomeFeaturedListings();
+    }
+
+    public static void addListingWithAdv(int id, Listing listing) {
+        //TODO: Make sure id exists before adding listing
+        Advertiser theAdv = SearchAdvertisers.searchByID(advertisers, id);
+        listing.setAdvertiser(theAdv);
+        listings.addListing(listing);
+    }
+
+    public static void sortListingsByBusinessName() {
+        SortListing.sortByBusinessName(listings);
+    }
+
+    public static void sortListingsByStartDate() {
+        SortListing.sortByMostRecentStartDate(listings);
+    }
+
+    public static void sortListingsByMostProfitable() {
+        SortListing.sortByMostProfittable(listings);
+    }
+
+    public static void sortListingsByLastName() {
+        SortListing.sortByAdvertisersLastName(listings);
+    }
+    public static void getListingsOfCategoryAndSubcategories(String[] catNsubcat) {
+        /*CategoryListing[] categoryListings = getCategoryListings();
+        ArrayList<CategoryListing> matchingListings = new ArrayList<CategoryListing>();
+        ArrayList<CategoryListing> potentialListings = new ArrayList<CategoryListing>();
+        CategoryListing curr;
+        String category; //also subcategory
+        for(int i = 0; i < catNsubcat.length; i++){
+            for(int j = 0; j < categoryListings.length; j++){
+                curr = categoryListings[j];
+                for(int k = 0; k < i; k++){
+                    category = curr.getCategoryGenre();
+                    curr = curr.getCategory().getSubcat();
+                }
+                if(curr.getCategoryGenre().equalsIgnoreCase(catNsubcat[i])){
+                    matchingListings.add(curr);
+                }
+            }
+        }*/
+    }
+    /**------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * ------------------------------- ADVERTISER SECTION ---------------------------------
+     * ------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * **/
+
+    public static Advertiser[] getAdvertisers() {
+        return advertisers.obtainAdvertisers();
+    }
+
+    public static void addAdvertiser(Advertiser advertiser) {
+        advertisers.addAdvertiser(advertiser);
+    }
+
+    public static Listing[] getListingsByAdvertisersEmailAddress(String emailaddress) {
+        return SearchListings.searchByAdvertisersEmailAddress(advertisers, listings, emailaddress);
+    }
+
+    public static Listing[] getListingsByAdvertisersID(int id) {
+        return SearchListings.searchByAdvertisersID(advertisers, listings, id);
+    }
+
+    public static Listing[] getListingsByAdvertisersLastName(String lastname) {
+        return SearchListings.searchByAdvertisersLastName(advertisers, listings, lastname);
+    }
+
+    public static Listing[] getListingsByAdvertisersPhoneNumber(String phonenumber) {
+        return SearchListings.searchByAdvertisersPhoneNumber(advertisers, listings, phonenumber);
+    }
+
+    public static Listing[] getListingsByAdvertisersSocialMedia(String outlet, String content) {
+        return SearchListings.searchByAdvertisersSocialMedia(advertisers, listings, outlet, content);
+    }
+
+    public static Advertiser getAdvertiserByID(int id) {
+        return SearchAdvertisers.searchByID(advertisers, id);
+    }
+
+    /**------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * ----------------------------------- REPORT SECTION ---------------------------------
+     * ------------------------------------------------------------------------------------
+     * ------------------------------------------------------------------------------------
+     * **/
+    public static String reportCustomersLastMonth() {
+        Advertiser[] advertisersArray = Report.getAdvertisersFromLastMonth(advertisers);
+        return (advertisersArray.length + " new customers were added last month.");
+    }
+
+    public static String reportActiveListings() {
+        Listing[] listingsArray = Report.getActiveListings(listings);
+        int amount_of_regular_listings = 0;
+        int amount_of_homefeatured_listings = 0;
+        int amount_of_category_listings = 0;
+        String type;
+        for(int i = 0; i < listingsArray.length; i++){
+            type = listingsArray[i].getClass().getSimpleName();
+            switch (type){
+                case "Listing":
+                    amount_of_regular_listings++;
+                    break;
+
+                case "HomeFeaturedListing":
+                    amount_of_homefeatured_listings++;
+                    break;
+
+                case "CategoryListing":
+                    amount_of_category_listings++;
+                    break;
+            }
+        }
+        //TODO: Count the number of different categories for the category listings and add it to the string that is being returned
+        return amount_of_category_listings + " active regular listings\n" + amount_of_homefeatured_listings + " active home-featured listings\n" + amount_of_category_listings + " active category listings\n";
+    }
 }

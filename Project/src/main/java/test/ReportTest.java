@@ -15,12 +15,12 @@ public class ReportTest {
     private Advertiser adv2 = new Advertiser("Carl", "Bubba", "Jones", "IV", "carl@carl.com", "Carls Cars", "(445)939-0934", "Mar 20, 2010");
     private Advertiser adv3 = new Advertiser("Antonio", "Anthony", "Antony", "II", "ant@welovepeople.org", "Every Deserves Love LLC", "(556)890-9403", "Jun 5, 2009");
     private Advertiser adv4 = new Advertiser("Own", "Lloyd", "Dawg", "", "dawg@sad.com", "system.SAD: Special Advertising Directory", "(654)586-9843", "Apr 6, 2008");
-    private Advertiser adv5 = new Advertiser("main.entities.Advertiser", "", "1", "", "advertiser@advertiser1.com", "Advertiser1.com", "(111)111-1111", "Oct 25, 2015");
-    private Advertiser adv6 = new Advertiser("main.entities.Advertiser", "", "2", "", "advertiser@advertiser2.com", "Advertiser2.com", "(222)222-2222", "Sep 25, 2015");
-    private Advertiser adv7 = new Advertiser("main.entities.Advertiser", "", "3", "", "advertiser@advertiser3.com", "Advertiser3.com", "(333)333-3333", "Jul 25, 2015");
-    private Advertiser adv8 = new Advertiser("main.entities.Advertiser", "", "4", "", "advertiser@advertiser4.com", "Advertiser4.com", "(444)444-4444", "Jun 25, 2015");
-    private Advertiser adv9 = new Advertiser("main.entities.Advertiser", "", "5", "", "advertiser@advertiser5.com", "Advertiser5.com", "(555)555-5555", "May 25, 2015");
-    private Advertiser adv10 = new Advertiser("main.entities.Advertiser", "", "6", "", "advertiser@advertiser6.com", "Advertiser6.com", "(666)666-6666", "Apr 25, 2015");
+    private Advertiser adv5 = new Advertiser("Advertiser", "", "1", "", "advertiser@advertiser1.com", "Advertiser1.com", "(111)111-1111", "Oct 30, 2015");
+    private Advertiser adv6 = new Advertiser("Advertiser", "", "2", "", "advertiser@advertiser2.com", "Advertiser2.com", "(222)222-2222", "Sep 30, 2015");
+    private Advertiser adv7 = new Advertiser("Advertiser", "", "3", "", "advertiser@advertiser3.com", "Advertiser3.com", "(333)333-3333", "Jul 30, 2015");
+    private Advertiser adv8 = new Advertiser("Advertiser", "", "4", "", "advertiser@advertiser4.com", "Advertiser4.com", "(444)444-4444", "Jun 30, 2015");
+    private Advertiser adv9 = new Advertiser("Advertiser", "", "5", "", "advertiser@advertiser5.com", "Advertiser5.com", "(555)555-5555", "May 30, 2015");
+    private Advertiser adv10 = new Advertiser("Advertiser", "", "6", "", "advertiser@advertiser6.com", "Advertiser6.com", "(666)666-6666", "Apr 30, 2015");
 
     private Listing list0 = new Listing(adv0, "This is a business\'s business", "somewhere", "www.business.net","Jan 01, 2001", "Dec 01, 2001", 300.00);
     private Listing list1 = new Listing(adv1, "This a business for heroes", "thatPlace", "www.heroes.org", "Jul 18, 2015", "Jul 18, 2099", 540.87);

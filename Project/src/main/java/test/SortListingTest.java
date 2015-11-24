@@ -44,7 +44,7 @@ public class SortListingTest {
 
         String[] expectedSortedLastNames = {"Antony", "Bill", "Dawg", "Jean", "Jones"};
 
-        String[] actualSortedLastNames = {theListings[0].obtainAdvertiserLastName(), theListings[1].obtainAdvertiserLastName(), theListings[2].obtainAdvertiserLastName(), theListings[3].obtainAdvertiserLastName(), theListings[4].obtainAdvertiserLastName()};
+        String[] actualSortedLastNames = {theListings[0].getAdvertiserLastName(), theListings[1].getAdvertiserLastName(), theListings[2].getAdvertiserLastName(), theListings[3].getAdvertiserLastName(), theListings[4].getAdvertiserLastName()};
 
         assertArrayEquals("Listings of same type can be sorted by main.entities.Advertiser\'s Last Name", expectedSortedLastNames, actualSortedLastNames);
     }
@@ -64,7 +64,7 @@ public class SortListingTest {
 
         String[] expectedSortedLastNames = {"Antony", "Bill", "Dawg", "Jean", "Jones"};
 
-        String[] actualSortedLastNames = {theListings[0].obtainAdvertiserLastName(), theListings[1].obtainAdvertiserLastName(), theListings[2].obtainAdvertiserLastName(), theListings[3].obtainAdvertiserLastName(), theListings[4].obtainAdvertiserLastName()};
+        String[] actualSortedLastNames = {theListings[0].getAdvertiserLastName(), theListings[1].getAdvertiserLastName(), theListings[2].getAdvertiserLastName(), theListings[3].getAdvertiserLastName(), theListings[4].getAdvertiserLastName()};
 
         assertArrayEquals("Listings of different types can be sorted by main.entities.Advertiser\'s Last Name", expectedSortedLastNames, actualSortedLastNames);
     }
@@ -83,7 +83,7 @@ public class SortListingTest {
 
         String[] expectedSortedLastNames = {"Bill", "Bill", "Bill", "Jean", "Jean"};
 
-        String[] actualSortedLastNames = {theListings[0].obtainAdvertiserLastName(), theListings[1].obtainAdvertiserLastName(), theListings[2].obtainAdvertiserLastName(), theListings[3].obtainAdvertiserLastName(), theListings[4].obtainAdvertiserLastName()};
+        String[] actualSortedLastNames = {theListings[0].getAdvertiserLastName(), theListings[1].getAdvertiserLastName(), theListings[2].getAdvertiserLastName(), theListings[3].getAdvertiserLastName(), theListings[4].getAdvertiserLastName()};
 
         assertArrayEquals("Listings of with same names can be sorted.", expectedSortedLastNames, actualSortedLastNames);
     }
@@ -102,7 +102,7 @@ public class SortListingTest {
 
         String[] expectedSortedDates = {"Nov 15, 2000", "Jan 01, 2001", "Dec 10, 2012", "Jul 18, 2015", "Nov 10, 2015"};
 
-        String[] actualSortedLastNames = {theListings[0].obtainStartDate(), theListings[1].obtainStartDate(), theListings[2].obtainStartDate(), theListings[3].obtainStartDate(), theListings[4].obtainStartDate()};
+        String[] actualSortedLastNames = {theListings[0].getStartDate(), theListings[1].getStartDate(), theListings[2].getStartDate(), theListings[3].getStartDate(), theListings[4].getStartDate()};
 
         assertArrayEquals("Listings can be sorted by start date", expectedSortedDates, actualSortedLastNames);
     }
@@ -144,11 +144,11 @@ public class SortListingTest {
         Listing[] theListings = la.getAllListings();
 
         String[] expectedSortedBusinessNames = {"Business.net", "Carls Cars", "Every Deserves Love LLC", "Heroes.org", "system.SAD: Special Advertising Directory"};
-        String[] actualSortedBusinessNames = {theListings[0].obtainAdvertiserBusinessName(),
-                theListings[1].obtainAdvertiserBusinessName(),
-                theListings[2].obtainAdvertiserBusinessName(),
-                theListings[3].obtainAdvertiserBusinessName(),
-                theListings[4].obtainAdvertiserBusinessName()};
+        String[] actualSortedBusinessNames = {theListings[0].getAdvertiserBusinessName(),
+                theListings[1].getAdvertiserBusinessName(),
+                theListings[2].getAdvertiserBusinessName(),
+                theListings[3].getAdvertiserBusinessName(),
+                theListings[4].getAdvertiserBusinessName()};
 
         assertArrayEquals("Listings can be sorted by business name", expectedSortedBusinessNames, actualSortedBusinessNames);
     }
