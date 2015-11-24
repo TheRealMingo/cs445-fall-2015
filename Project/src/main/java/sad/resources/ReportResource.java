@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("report")
 public class ReportResource {
-    //TODO: TEST 
     @GET
     @Path("activelistings")
     @Produces(MediaType.TEXT_PLAIN)
@@ -28,32 +27,32 @@ public class ReportResource {
         return Main.system.reportCustomersLastMonth();
     }
 
-    //TODO: 3month - 9month
+
     @GET
     @Path("customersamount/3month")
     @Produces(MediaType.TEXT_PLAIN)
     public String getTotalAmountOfCustomersLast3Months(){
-        return null; //Main.system.reportCustomersLast3Months
+        return Main.system.reportCustomersLast3Months();
     }
 
     @GET
     @Path("customersamount/6month")
     @Produces(MediaType.TEXT_PLAIN)
     public String getTotalAmountOfCustomersLast6Months(){
-        return null; //Main.system.reportCustomersLast6Months
+        return Main.system.reportCustomersLast6Months();
     }
 
     @GET
     @Path("customersamount/9month")
     @Produces(MediaType.TEXT_PLAIN)
     public String getTotalAmountOfCustomersLast9Months(){
-        return null; //Main.system.reportCustomersLast9Months
+        return Main.system.reportCustomersLast9Months();
     }
 
     @GET
     @Path("customersamount/12month")
     @Produces(MediaType.TEXT_PLAIN)
     public String getTotalAmountOfCustomersLast12Months(){
-        return null; //Main.system.reportCustomersLast12Months
+        return Main.system.reportCustomersLast12Months();
     }
 }

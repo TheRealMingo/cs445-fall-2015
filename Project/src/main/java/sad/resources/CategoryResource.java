@@ -31,8 +31,7 @@ public class CategoryResource {
         for(int i = 0; i < categories.size();i++){
             catNsubcat[i] = categories.get(i).getPath();
         }
-        Main.system.getListingsOfCategoryAndSubcategories(catNsubcat);
-        return null;
+        return Main.system.getListingsOfCategoryAndSubcategories(catNsubcat);
     }
 
     @POST

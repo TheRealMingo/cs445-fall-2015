@@ -1,6 +1,7 @@
 package system;
 
 import sad.entities.*;
+import sad.persistence.AdvertiserWriter;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class SAD {
     private static AdvertiserArray advertisers = new AdvertiserArray();
     private static CategoryArray categories = new CategoryArray();
     private static ListingArray listings = new ListingArray();
+    private static AdvertiserWriter advertiserwriter = new AdvertiserWriter();
     private static SAD sad = new SAD();
 
     private SAD(){}
@@ -126,24 +128,41 @@ public class SAD {
     public static void sortListingsByLastName() {
         SortListing.sortByAdvertisersLastName(listings);
     }
-    public static void getListingsOfCategoryAndSubcategories(String[] catNsubcat) {
-        /*CategoryListing[] categoryListings = getCategoryListings();
-        ArrayList<CategoryListing> matchingListings = new ArrayList<CategoryListing>();
-        ArrayList<CategoryListing> potentialListings = new ArrayList<CategoryListing>();
-        CategoryListing curr;
-        String category; //also subcategory
+    public static CategoryListing[] getListingsOfCategoryAndSubcategories(String[] catNsubcat) {
+        Category[] theCategories = categories.obtainAllCategories();
+        CategoryListing[] categoryListings = getCategoryListings();
+
         for(int i = 0; i < catNsubcat.length; i++){
+            String currCategory = catNsubcat[i];
+            int count = 0;
+            CategoryListing[] temp = new CategoryListing[categoryListings.length];
             for(int j = 0; j < categoryListings.length; j++){
-                curr = categoryListings[j];
-                for(int k = 0; k < i; k++){
-                    category = curr.getCategoryGenre();
-                    curr = curr.getCategory().getSubcat();
+                Category theCategory = categoryListings[j].getCategory();
+                if(i > 0){
+                    for(int k = 0; k < i; k++){
+                        if(theCategory.getSubcat().size() > 0) {
+                            theCategory = theCategory.getSubcat().get(i - 1);
+                        }
+                    }
                 }
-                if(curr.getCategoryGenre().equalsIgnoreCase(catNsubcat[i])){
-                    matchingListings.add(curr);
+                if(categoryListings[j] != null && theCategory.getCategoryGenre().equals(currCategory)){
+                    temp[count++] = categoryListings[j];
                 }
             }
-        }*/
+            categoryListings = temp;
+        }
+        int totalNotNullInCategoryListings = 0;
+        for(int i = 0; i < categoryListings.length; i++){
+            if(categoryListings[i] != null)
+                totalNotNullInCategoryListings++;
+        }
+
+        CategoryListing[] temp = new CategoryListing[totalNotNullInCategoryListings];
+        for(int i = 0; i < temp.length; i++){
+            temp[i] = categoryListings[i];
+        }
+        categoryListings = temp;
+        return categoryListings;
     }
     /**------------------------------------------------------------------------------------
      * ------------------------------------------------------------------------------------
@@ -157,7 +176,9 @@ public class SAD {
     }
 
     public static void addAdvertiser(Advertiser advertiser) {
+
         advertisers.addAdvertiser(advertiser);
+        advertiserwriter.writeAdvertiser(advertiser);
     }
 
     public static Listing[] getListingsByAdvertisersEmailAddress(String emailaddress) {
@@ -195,6 +216,26 @@ public class SAD {
         return (advertisersArray.length + " new customers were added last month.");
     }
 
+    public static String reportCustomersLast3Months() {
+        Advertiser[] advertisersArray  = Report.getAdvertisersFromLastThreeMonths(advertisers);
+        return (advertisersArray.length + " new customers were added in the last 3 months.");
+    }
+
+    public static String reportCustomersLast6Months() {
+        Advertiser[] advertisersArray  = Report.getAdvertisersFromLastSixMonths(advertisers);
+        return (advertisersArray.length + " new customers were added in the last 6 months.");
+    }
+
+    public static String reportCustomersLast9Months() {
+        Advertiser[] advertisersArray  = Report.getAdvertisersFromLastNineMonths(advertisers);
+        return (advertisersArray.length + " new customers were added in the last 9 months.");
+    }
+
+    public static String reportCustomersLast12Months() {
+        Advertiser[] advertisersArray  = Report.getAdvertisersFromLastTwelveMonths(advertisers);
+        return (advertisersArray.length + " new customers were added in the last 12 months.");
+    }
+
     public static String reportActiveListings() {
         Listing[] listingsArray = Report.getActiveListings(listings);
         int amount_of_regular_listings = 0;
@@ -218,6 +259,6 @@ public class SAD {
             }
         }
         //TODO: Count the number of different categories for the category listings and add it to the string that is being returned
-        return amount_of_category_listings + " active regular listings\n" + amount_of_homefeatured_listings + " active home-featured listings\n" + amount_of_category_listings + " active category listings\n";
+        return amount_of_regular_listings + " active regular listings\n" + amount_of_homefeatured_listings + " active home-featured listings\n" + amount_of_category_listings + " active category listings\n";
     }
 }

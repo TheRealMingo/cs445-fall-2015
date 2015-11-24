@@ -1,6 +1,7 @@
 package sad.entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -10,7 +11,7 @@ import java.util.GregorianCalendar;
  */
 
 @XmlRootElement
-public class Advertiser {
+public class Advertiser implements Serializable{
     private String fname;
     private String mname;
     private String lname;
@@ -210,4 +211,5 @@ public class Advertiser {
             return false;
         }
     }
+
 }
