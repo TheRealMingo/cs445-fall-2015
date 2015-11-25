@@ -4,9 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Anthony on 11/17/2015.
- */
 public class Report {
     private static double month = 2.628e9;
     public static Listing[] getActiveListings(ListingArray theListings){

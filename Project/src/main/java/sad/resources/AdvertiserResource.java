@@ -8,9 +8,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-/**
- * Created by Anthony on 11/23/2015.
- */
 @Path("advertisers")
 public class AdvertiserResource {
 

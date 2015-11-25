@@ -4,9 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Anthony on 11/13/2015.
- */
 public class SortListing {
     public static void sortByAdvertisersLastName(ListingArray listings) {
         String currLastName;

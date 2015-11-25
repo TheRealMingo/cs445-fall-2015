@@ -1,8 +1,5 @@
 package sad.entities;
 
-/**
- * Created by Anthony on 11/22/2015.
- */
 public class CategoryArray {
     private Category[] theCategories = new Category[100];
     private int num_of_categories = 0;

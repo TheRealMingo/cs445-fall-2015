@@ -1,8 +1,5 @@
 package sad.entities;
 
-/**
- * Created by Anthony on 11/15/2015.
- */
 public class SearchListings {
     public static Listing[] searchByAdvertisersEmailAddress(AdvertiserArray theAdvertisers, ListingArray theListings, String emailAddress){
         Advertiser theAdvertiser = new Advertiser();
@@ -36,7 +33,6 @@ public class SearchListings {
         return listings;
     }
 
-    //TODO: Change that the code does not assume last name is unique
     public static Listing[] searchByAdvertisersLastName(AdvertiserArray theAdvertisers, ListingArray theListings, String lastname){
         Advertiser theAdvertiser = new Advertiser();
         for(int i = 0; i < theAdvertisers.totalAmountofAdvertisers(); i++){

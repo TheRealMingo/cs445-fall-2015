@@ -9,9 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- * Created by Anthony on 11/24/2015.
- */
 @Path("/")
 public class HomeResource {
     @GET

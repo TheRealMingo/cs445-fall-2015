@@ -1,27 +1,16 @@
 package system;
 
 import sad.entities.*;
-import sad.persistence.AdvertiserReader;
-import sad.persistence.AdvertiserWriter;
 
 import java.util.ArrayList;
 
-/**
- * Created by Anthony on 11/22/2015.
- */
 public class SAD {
     private static AdvertiserArray advertisers = new AdvertiserArray();
     private static CategoryArray categories = new CategoryArray();
     private static ListingArray listings = new ListingArray();
-    private static AdvertiserWriter advertiserwriter = new AdvertiserWriter();
-    private static AdvertiserReader advertiserReader = new AdvertiserReader();
     private static SAD sad = new SAD();
 
     private SAD(){
-       Advertiser[] advs =  advertiserReader.readAdvertisers();
-        for(int i = 0; i < advs.length; i++){
-            advertisers.addAdvertiser(advs[i]);
-        }
     }
 
     public static SAD getInstance(){
@@ -114,7 +103,6 @@ public class SAD {
     }
 
     public static void addListingWithAdv(int id, Listing listing) {
-        //TODO: Make sure id exists before adding listing
         Advertiser theAdv = SearchAdvertisers.searchByID(advertisers, id);
         listing.setAdvertiser(theAdv);
         listings.addListing(listing);
@@ -185,7 +173,6 @@ public class SAD {
     public static void addAdvertiser(Advertiser advertiser) {
 
         advertisers.addAdvertiser(advertiser);
-        advertiserwriter.writeAdvertiser(advertiser);
     }
 
     public static Listing[] getListingsByAdvertisersEmailAddress(String emailaddress) {
@@ -273,7 +260,6 @@ public class SAD {
         Advertiser[] advertisersArray  = Report.getAdvertisersFromLastTwelveMonths(advertisers);
         return (advertisersArray.length + " new customers were added in the last 12 months.");
     }
-
     public static String reportActiveListings() {
         Listing[] listingsArray = Report.getActiveListings(listings);
         int amount_of_regular_listings = 0;
@@ -296,7 +282,6 @@ public class SAD {
                     break;
             }
         }
-        //TODO: Count the number of different categories for the category listings and add it to the string that is being returned
         return amount_of_regular_listings + " active regular listings\n" + amount_of_homefeatured_listings + " active home-featured listings\n" + amount_of_category_listings + " active category listings\n";
     }
 }

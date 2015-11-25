@@ -7,9 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- * Created by Anthony on 11/24/2015.
- */
 @Path("report")
 public class ReportResource {
     @GET

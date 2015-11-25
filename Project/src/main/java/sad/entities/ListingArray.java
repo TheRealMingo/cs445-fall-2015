@@ -3,9 +3,7 @@ package sad.entities;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-/**
- * Created by Anthony on 11/9/2015.
- */
+
 public class ListingArray {
     private Listing[] theListing = new Listing[100];
     private int num_of_listing = 0;

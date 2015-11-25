@@ -2,9 +2,6 @@ package sad.entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by Anthony on 10/9/2015.
- */
 @XmlRootElement
 public class CategoryListing extends Listing {
     private Category category;

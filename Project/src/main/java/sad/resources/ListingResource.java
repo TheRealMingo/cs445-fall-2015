@@ -8,16 +8,12 @@ import system.Main;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-/**
- * Created by Anthony on 11/23/2015.
- */
 @Path("listings")
 public class ListingResource {
     @GET
     @Path("sort/businessname")
     @Produces(MediaType.APPLICATION_JSON)
     public Listing[] getListingsSortedByBusinessName(){
-        //TODO: Test
         Main.system.sortListingsByBusinessName();
         return Main.system.getListings();
     }
@@ -26,7 +22,6 @@ public class ListingResource {
     @Path("sort/lastname")
     @Produces(MediaType.APPLICATION_JSON)
     public Listing[] getListingsSortedByLastName(){
-        //TODO: Test
         Main.system.sortListingsByLastName();
         return Main.system.getListings();
     }

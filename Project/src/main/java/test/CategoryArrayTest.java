@@ -7,9 +7,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Anthony on 11/22/2015.
- */
 public class CategoryArrayTest {
     private Category c0 = new Category("History");
     private Category c1 = new Category("Art");
