@@ -1,6 +1,7 @@
 package system;
 
 import sad.entities.*;
+import sad.persistence.AdvertiserReader;
 import sad.persistence.AdvertiserWriter;
 
 import java.util.ArrayList;
@@ -13,9 +14,15 @@ public class SAD {
     private static CategoryArray categories = new CategoryArray();
     private static ListingArray listings = new ListingArray();
     private static AdvertiserWriter advertiserwriter = new AdvertiserWriter();
+    private static AdvertiserReader advertiserReader = new AdvertiserReader();
     private static SAD sad = new SAD();
 
-    private SAD(){}
+    private SAD(){
+       Advertiser[] advs =  advertiserReader.readAdvertisers();
+        for(int i = 0; i < advs.length; i++){
+            advertisers.addAdvertiser(advs[i]);
+        }
+    }
 
     public static SAD getInstance(){
         return sad;
@@ -205,6 +212,37 @@ public class SAD {
         return SearchAdvertisers.searchByID(advertisers, id);
     }
 
+    public static void updateAdvertiserTo(int id, Advertiser advertiser) {
+        Advertiser adv = SearchAdvertisers.searchByID(advertisers, id);
+        if(advertiser.getFname() != null){
+            adv.setFname(advertiser.getFname());
+        }
+        if(advertiser.getMname() != null){
+            adv.setMname(advertiser.getMname());
+        }
+        if(advertiser.getLname() != null){
+            adv.setLname(advertiser.getLname());
+        }
+        if(advertiser.getSuffix() != null){
+            adv.setSuffix(advertiser.getSuffix());
+        }
+        if(advertiser.getEmailAddr() != null){
+            adv.setEmailAddr(advertiser.getEmailAddr());
+        }
+        if(advertiser.getBusinessName() != null){
+            adv.setBusinessName(advertiser.getBusinessName());
+        }
+        if(advertiser.getPhoneNumber() != null){
+            adv.setPhoneNumber(advertiser.getPhoneNumber());
+        }
+        if(advertiser.getStartDate() != null){
+            adv.setStartDate(advertiser.getStartDate());
+        }
+        if(advertiser.getSocialMedia() != null){
+            adv.setSocialMedia(advertiser.getSocialMedia());
+        }
+
+    }
     /**------------------------------------------------------------------------------------
      * ------------------------------------------------------------------------------------
      * ----------------------------------- REPORT SECTION ---------------------------------

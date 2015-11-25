@@ -73,5 +73,13 @@ public class AdvertiserResource {
         return advertiser;
     }
 
+    @PUT
+    @Path("advertiser/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Advertiser updateAdvertiser(@PathParam("id") String id, Advertiser advertiser){
+        Main.system.updateAdvertiserTo(Integer.parseInt(id), advertiser);
+        return Main.system.getAdvertiserByID(Integer.parseInt(id));
+    }
 
 }

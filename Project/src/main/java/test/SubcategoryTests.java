@@ -87,7 +87,7 @@ public class SubcategoryTests {
         sc.giveSubcategory("China");
         String[] subcats = sc.obtainSubcategoriesNames();
         String[] expected = {"USA", "China"};
-        assertArrayEquals("main.entities.Subcategory can have subcategory", expected, subcats);
+        assertArrayEquals("Subcategory can have subcategory", expected, subcats);
     }
 
     @Test
