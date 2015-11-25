@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SAD API</title>
+<link rel="stylesheet" type="text/css" href="css/foundation.min.css"/>
+</head>
+<!-- Give example of JSON at end-->
+<body style="margin: 25px">
+	<h1 class="text-center">SAD API</h1>
+	<hr /> 
+	<hr />
+	<p>Click <a href="#jsonFormats">here</a> to see JSON Formats</p>
+	<hr />
+	<hr />
+	<div>
+		<h2>Home</h2>
+		<hr />
+		<hr />
+		<h3>GET /</h3>
+		<p>Gets an array of all home-featured listings in the system</p>
+		<h4>Resource Url</h4>
+		<p>/</p>
+		<h4>Example Request</h4>
+		<p>GET http://localhost:8080/sad/categories</p>
+	</div> 
+	<div>
+		<h2 class="text-center">Categories<h2>
+		<hr />
+		<hr />
+		<div> 
+			<h3>GET /categories</h3>
+			<p>Gets an array of all categories in the system</p>
+			<h4>Resource Url</h4>
+			<p>/categories</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/categories</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /listings/{category: .*}</h3>
+			<p>Gets an array of listings with the category (and subcategories) as specified</p>
+			<h4>Resource Url</h4>
+			<p>/categories/listings/{category: .*}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/categories/listings/history/asian/china</p>
+		</div>
+		<hr />
+		<div>
+			<h3>POST /listings/category</h3>
+			<p>Creates a category for the system</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>categoryGenre (required) : The genre of the category </li>
+				<li>subcat (optional) : array of subcategories of the category</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/categories/listings/category</p>
+			<h4>Example Request</h4>
+			<p>POST http://localhost:8080/sad/categories/category</p>
+		</div>
+		<hr />
+		<div>
+			<h3>PUT /category/{category}/{subcategory}</h3>
+			<p>Gives the specified category the specified subcategory</p>
+			<h4>Resource Url</h4>
+			<p>/categories/category/{category}/{subcategory}</p>
+			<h4>Example Request</h4>
+			<p>PUT http://localhost:8080/sad/categories/category/literature/asian</p>
+		</div>
+		<hr />
+		<div>
+			<h3>DELETE remove/{category}</h3>
+			<p>Removes the category specified</p>
+			<h4>Resource Url</h4>
+			<p>/categories/remove/{category}</p>
+			<h4>Example Request</h4>
+			<p>DELETE http://localhost:8080/sad/categories/remove/literature</p>
+		</div>
+	</div>
+	<hr />
+	<hr />
+	<div>
+		<h2 class="text-center">Advertisers</h2>
+		<hr />
+		<hr /> 
+		<div>
+			<h3>GET /advertisers</h3>
+			<p>Gets an array of all advertisers in the system</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /searchid/{id}</h3>
+			<p>Gets the advertiser with the specified id</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/searchid/{id}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/searchid/1</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /listings/searchid/{id}</h3>
+			<p>Gets an array of all listings that belongs to advertiser with id</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/listings/searchid/{id}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/searchid/0</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /listings/searchemail/{emailaddress}</h3>
+			<p>Gets an array of all listings that belongs to advertiser with the specified email address</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/listings/searchemail/{emailaddress}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/searchemail/ahicks2@hawk.iit.edu</p>
+		</div> 
+		<hr /> 
+		<div>
+			<h3>GET /listings/searchlastname/{lastname}</h3>
+			<p>Gets an array of all listings that belongs to advertiser with the specified last name</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/listings/searchlastname/{lastname}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/searchlastname/hicks2</p>
+		</div> 
+		<hr />
+		<div>
+			<h3>GET /listings/searchphonenumber/{phonenumber}</h3>
+			<p>Gets an array of all listings that belongs to advertiser with the specified phone number</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/listings/searchphonenumber/{phonenumber}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/searchphonenumber/(123)456-7890</p>
+		</div> 
+		<hr />
+		<div>
+			<h3>GET /listings/searchsocialmedia/{outlet}/{content}</h3>
+			<p>Gets an array of all listings that belongs to advertiser with the content of the specified outlet (outlet and content are case-sensitive)</p>
+			<h4>Resource Url</h4>
+			<p>/advertisers/listings/searchsocialmedia/{outlet}/{content}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/searchsocialmedia/Facebook/Anthony%20Hicks</p>
+		</div>
+		<hr />
+			<div>
+			<h3>POST /advertiser</h3>
+			<p>Creates an advertiser</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>fname(required) : The first name of advertiser </li>
+				<li>mname(optional) : The middle name of advertiser</li>
+				<li>lname(required) : The last name of advertiser</li>
+				<li>suffix(optional) : The suffix of the name of the advertiser</li>
+				<li>emailAddr (required): The advertiser's email address</li>
+				<li>businessName (required): The advertiser's business's name</li>
+				<li>phoneNumber(required): The advertiser's phone number</li>
+				<li>startDate(required) : The start date of advertiser - format: MMM dd, YYYY</li>
+				<li>socialMedia (optional) : An array of social media accounts of the advertiser  - format : "{outlet}:{content}"</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/advertisers/advertiser</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/advertiser</p>
+		</div> 
+		<hr /> 
+			<div>
+			<h3>PUT /advertiser/{id}</h3>
+			<p>Updates the advertiser with id with the given parameters</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>fname(optional) : The first name of advertiser </li>
+				<li>mname(optional) : The middle name of advertiser</li>
+				<li>lname(optional) : The last name of advertiser</li>
+				<li>suffix(optional) : The suffix of the name of the advertiser</li>
+				<li>emailAddr (optional): The advertiser's email address</li>
+				<li>businessName (optional): The advertiser's business's name</li>
+				<li>phoneNumber(optional): The advertiser's phone number</li>
+				<li>startDate(optional) : The start date of advertiser - format: MMM dd, YYYY</li>
+				<li>socialMedia (optional) : An array of social media accounts of the advertiser  - format : "{outlet}:{content}"</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/advertisers/advertiser/{id}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/advertisers/listings/advertiser/0</p>
+		</div> 
+	</div>
+	<hr />
+	<hr />
+	<div>
+		<h4 class="text-center">Listings</h4>
+		<hr />
+		<hr />
+		<div>
+			<h3>GET /listings</h3>
+			<p>Gets an array of all listings in the system</p>
+			<h4>Resource Url</h4>
+			<p>/listings/</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /sort/businessname</h3>
+			<p>Gets an array of all listings in the system sorted by the business they belong to</p>
+			<h4>Resource Url</h4>
+			<p>/listings/sort/businessname</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/sort/businessname</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /sort/lastname</h3>
+			<p>Gets an array of all listings in the system sorted by the last name of the advertisers they belong to</p>
+			<h4>Resource Url</h4>
+			<p>/listings/sort/lastname</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/sort/lastname</p>
+		</div>  
+		<hr />
+		<div>
+			<h3>GET /sort/profitable</h3>
+			<p>Gets an array of all listings in the system sorted by how profitable they are</p>
+			<h4>Resource Url</h4>
+			<p>/listings/sort/profitable</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/sort/profitable</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /sort/mostrecent</h3>
+			<p>Gets an array of all listings in the system sorted by how recent they are</p>
+			<h4>Resource Url</h4>
+			<p>/listings/sort/mostrecent</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/sort/mostrecent</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /homefeaturedlistings</h3>
+			<p>Gets an array of all home-featured listings</p>
+			<h4>Resource Url</h4>
+			<p>/listings/homefeaturedlistings</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/homefeaturedlistings</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /categorylistings</h3>
+			<p>Gets an array of all category listings</p>
+			<h4>Resource Url</h4>
+			<p>/listings/categorylistings</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/categorylistings</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /categorylistings/{category}</h3>
+			<p>Gets an array of all category listings with the specified category</p>
+			<h4>Resource Url</h4>
+			<p>/listings/categorylistings/{category}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/categorylistings/art</p>
+		</div>
+		<hr />
+		<div>
+			<h3>GET /listing/for/{advertiserid}</h3>
+			<p>Gets an array of all listings that belong to the advertiser with id</p>
+			<h4>Resource Url</h4>
+			<p>/listings/listing/for/{advertiserid}</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/listing/for/0</p>
+		</div>
+		<hr />
+			<div>
+			<h3>POST /listing</h3>
+			<p>Creates a listing</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>Advertiser(required) : The advertiser for the listing</li>
+				<li>businessDescr(required) : A description of the business for the listing</li>
+				<li>imageLoc(optional) : An image for the listing</li>
+				<li>websiteLink(optional) : The website of the business that own the listing</li>
+				<li>startDate(required): The date the listing will be to be active</li>
+				<li>endDate(required): The date the listing will no longer be active</li>
+				<li>price(required): The price of the listing</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/listings/listing</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/listing</p>
+		</div>
+			<hr />
+			<div>
+			<h3>POST /categorylisting</h3>
+			<p>Creates a category listing</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>Advertiser(required) : The advertiser for the listing</li>
+				<li>Category(required) : The category for the listing</li>
+				<li>businessDescr(required) : A description of the business for the listing</li>
+				<li>imageLoc(optional) : An image for the listing</li>
+				<li>websiteLink(optional) : The website of the business that own the listing</li>
+				<li>startDate(required): The date the listing will be to be active</li>
+				<li>endDate(required): The date the listing will no longer be active</li>
+				<li>price(required): The price of the listing</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/listings/categorylisting</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/categorylisting</p>
+		</div>
+			<hr />
+			<div>
+			<h3>POST /homefeaturedlisting</h3>
+			<p>Creates a home-featured listing</p>
+			<h4>Parameters</h4>
+			<ul>
+				<li>type(required) : The listing type - (Value <b>must</b> be present and must equal <b>homeFeaturedListing</b> and this is case-sensitive)</li>
+				<li>Advertiser(required) : The advertiser for the listing</li>
+				<li>businessDescr(required) : A description of the business for the listing</li>
+				<li>imageLoc(optional) : An image for the listing</li>
+				<li>websiteLink(optional) : The website of the business that own the listing</li>
+				<li>startDate(required): The date the listing will be to be active</li>
+				<li>endDate(required): The date the listing will no longer be active</li>
+				<li>price(required): The price of the listing</li>
+			</ul>
+			<h4>Resource Url</h4>
+			<p>/listings/homefeaturedlisting</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/listings/homefeaturedlisting</p>
+		</div>   
+	</div>
+	<hr />
+	<hr />
+	<div>
+		<h4 class="text-center">Report</h4>
+		<hr />
+		<hr /> 
+		<div>
+			<h3>GET /report/activelistings</h3>
+			<p>Gets an array of all active listings in the system</p>
+			<h4>Resource Url</h4>
+			<p>/report/activelistings</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/activelistings</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /report/customersamount/1month</h3>
+			<p>Gets a string that tells the total amount of new customers in the last month</p>
+			<h4>Resource Url</h4>
+			<p>/report/customersamount/1month</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/customersamount/1month</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /report/customersamount/3month</h3>
+			<p>Gets a string that tells the total amount of new customers in the last 3 months</p>
+			<h4>Resource Url</h4>
+			<p>/report/customersamount/3month</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/customersamount/3month</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /report/customersamount/6month</h3>
+			<p>Gets a string that tells the total amount of new customers in the last 6 months</p>
+			<h4>Resource Url</h4>
+			<p>/report/customersamount/6month</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/customersamount/6month</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /report/customersamount/9month</h3>
+			<p>Gets a string that tells the total amount of new customers in the last 9 months</p>
+			<h4>Resource Url</h4>
+			<p>/report/customersamount/9month</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/customersamount/9month</p>
+		</div>
+		<hr /> 
+		<div>
+			<h3>GET /report/customersamount/12month</h3>
+			<p>Gets a string that tells the total amount of new customers in the last 12 months</p>
+			<h4>Resource Url</h4>
+			<p>/report/customersamount/12month</p>
+			<h4>Example Request</h4>
+			<p>GET http://localhost:8080/sad/report/customersamount/12month</p>
+		</div>
+	</div>
+	<hr />
+	<hr />
+	<div id="jsonFormats">
+		<h1 class="text-center">JSON Formats</h1>
+		<hr />
+		<hr /> 
+		<h4 class="text-center">Category Format</h4>
+		<p>Category without subcategory</p>
+		<pre>
+			{
+				"categoryGenre":"{category}",
+				"subcat": []
+			}
+		</pre>
+		<p>Category with subcategory</p>
+		<pre>
+			{
+				"categoryGenre":"{category}",
+				"subcat":[
+					{
+						"categoryGenre":"{category}", 
+						"subcat":[]
+					}
+				]
+			}
+		</pre>
+		<h4 class="text-center">Listing Format</h4>
+		<pre>
+			{
+				"advertiser":[{
+					"fname":"{firstname}",
+					"mname":"{middlename}", 
+					"lname":"{lastname}", 
+					"suffix":"{suffix}", 
+					"emailAddr":"{emailAddr}", 
+					"businessName":"{businessName}", 
+					"phoneNumber":"{phoneNumber}", 
+					"startDate":"{startDate}",
+					"socialMedia": "{socialMedia}"
+				}],
+				"businessDescription":"{description}", 
+				"imageLoc":"{imageLoc}", 
+				"websiteLink":"{websiteLink}", 
+				"startDate":"{startDate}", 
+				"endDate":"{endDate}", 
+				"price":JSON_NUMBER
+			}
+		</pre>
+		<h4 class="text-center">Advertiser Format</h4>
+		<pre>
+			{
+				"fname":"{firstname}",
+				"mname":"{middlename}", 
+				"lname":"{lastname}", 
+				"suffix":"{suffix}", 
+				"emailAddr":"{emailAddr}", 
+				"businessName":"{businessName}", 
+				"phoneNumber":"{phoneNumber}", 
+				"startDate":"{startDate}",
+				"socialMedia": "{socialMedia}"
+			}
+		</pre>
+	</div>
+</body>
+
+</html>

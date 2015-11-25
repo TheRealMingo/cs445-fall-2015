@@ -41,16 +41,14 @@ public class CategoryResource {
 
     @DELETE
     @Path("remove/{category}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteCategory(@PathParam("category") String category){
         Main.system.deleteCategory(category);
         return Response.ok().build();
     }
 
-    @POST
+    @PUT
     @Path("category/{category}/{subcategory}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Category giveCategorySubcategory(@PathParam("category") String category, @PathParam("subcategory") String subcategory){
         Category[] categories = Main.system.getCategories();
