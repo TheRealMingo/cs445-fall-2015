@@ -1,8 +1,5 @@
 package sad.entities;
 
-/**
- * Created by Anthony on 11/9/2015.
- */
 public class AdvertiserArray {
     private Advertiser[] advertisers = new Advertiser[100];
     private int advertiserIndex = 0;

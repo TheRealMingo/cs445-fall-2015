@@ -1,6 +1,5 @@
 package sad.resources;
 
-import sad.entities.Category;
 import sad.entities.HomeFeaturedListing;
 import system.Main;
 

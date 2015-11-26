@@ -2,7 +2,6 @@ package sad.resources;
 
 import sad.entities.Category;
 import sad.entities.CategoryListing;
-import sad.entities.Listing;
 import system.Main;
 
 import javax.ws.rs.*;
